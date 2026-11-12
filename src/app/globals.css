@@ -311,3 +311,73 @@ td b,.company-link{color:#294638}
 .shell[data-theme="dark"] .theme-toggle:hover{background:#254633}
 .shell[data-theme="dark"] .scrim{background:#000b07aa}
 @media(prefers-reduced-motion:reduce){.shell[data-theme="dark"] *{transition:none!important}}
+
+
+/* Modern fintech accent palette: teal + cyan + royal blue.
+   Chart series retain their own semantic colors and are intentionally untouched. */
+:root{
+  --ink:#17243b;
+  --muted:#78869b;
+  --line:#e3eaf1;
+  --blue:#315bd6;
+  --navy:#101b32;
+  --green:#008f83;
+}
+.sidebar{background:#101b32}
+.brand-icon{background:linear-gradient(140deg,#16b8b0,#315bd6);box-shadow:0 7px 20px #315bd633}
+.brand b span{color:#69d7d0}
+.market{border-color:#293b59}
+.market>b{background:#1d3555;color:#72e0d9}
+.nav-item.active{background:#213b63;box-shadow:inset 3px 0 #19c5bd}
+.primary{background:#315bd6;border-color:#315bd6;box-shadow:0 4px 10px #315bd622}
+.primary:hover{box-shadow:0 7px 16px #315bd633}
+.metric-top i{background:#e8f8f7;color:#008f9b}
+.up{color:#008f83}
+.text-btn,.company-link:hover,.sort-button:hover{color:#315bd6}
+.logo{background:#e9f8f7;color:#008f9b}
+.c1{background:#e4f7f3;color:#008f83}
+.c3{background:#e9efff;color:#315bd6}
+.insight{background:linear-gradient(145deg,#153e59,#17264a)}
+.search:focus-within{border-color:#28b8bd;box-shadow:0 0 0 3px #22c7d922}
+.security-detail{border-color:#cfeeed;background:#f2fbfa}
+.security-detail b{color:#17465a}
+.academy-intro{border-color:#d6eeee;background:linear-gradient(120deg,#fff 0%,#eaf9f8 58%,#eef2ff 100%)}
+.academy-intro small{color:#008f9b}
+.academy-intro h2{color:#17344c}
+.learning-badge{border-color:#d5e8f5;color:#315bd6}
+.lesson-toggle:hover,.glossary-item>button:hover{color:#008f9b}
+.theme-toggle{border-color:#cfe6ec;background:#f0f9fa;color:#176b82}
+.theme-toggle:hover{background:#e2f5f6}
+button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#28bfc6}
+.sector-select select:focus-visible{outline-color:#28bfc6}
+.shell[data-theme="dark"]{
+  --ink:#e3eef7;--muted:#9aafc2;--line:#29445b;--blue:#7f9dff;
+  --navy:#081827;--green:#38c8b9;
+  background:#081827;color:#e3eef7
+}
+.shell[data-theme="dark"] .sidebar{background:#071522;border-right:1px solid #203b50}
+.shell[data-theme="dark"] .brand-icon{background:linear-gradient(140deg,#087f83,#315bd6)}
+.shell[data-theme="dark"] .brand b span{color:#5dd7d0}
+.shell[data-theme="dark"] .market{border-color:#29445b}
+.shell[data-theme="dark"] .market>b{background:#17435a;color:#76e1df}
+.shell[data-theme="dark"] .nav-item.active{background:#173c58;box-shadow:inset 3px 0 #22c7c6}
+.shell[data-theme="dark"] .main{background:#081827}
+.shell[data-theme="dark"] header{background:#10283b;border-color:#29445b}
+.shell[data-theme="dark"] .primary{background:#315bd6;border-color:#5276e8;color:#fff}
+.shell[data-theme="dark"] .metric,.shell[data-theme="dark"] .panel{background:#10283b;border-color:#29445b}
+.shell[data-theme="dark"] .metric-top i{background:#16414c;color:#56d8d3}
+.shell[data-theme="dark"] .up{color:#42d2bd}
+.shell[data-theme="dark"] .text-btn,.shell[data-theme="dark"] .company-link{color:#8faaff}
+.shell[data-theme="dark"] .logo{background:#17414b;color:#69ded7}
+.shell[data-theme="dark"] .c1{background:#17453f;color:#67d9c3}
+.shell[data-theme="dark"] .c3{background:#20345f;color:#a9bbff}
+.shell[data-theme="dark"] .insight{background:linear-gradient(145deg,#123d50,#17264a);border:1px solid #28536a}
+.shell[data-theme="dark"] .search:focus-within{border-color:#22c7c6;box-shadow:0 0 0 3px #22c7c622}
+.shell[data-theme="dark"] .security-detail{background:#123847;border-color:#28576a}
+.shell[data-theme="dark"] .security-detail b{color:#e0f4f4}
+.shell[data-theme="dark"] .academy-intro{background:linear-gradient(120deg,#102d3d,#123b43 58%,#1c2d50);border-color:#28576a}
+.shell[data-theme="dark"] .academy-intro small{color:#58d6d1}
+.shell[data-theme="dark"] .academy-intro h2{color:#e3eef7}
+.shell[data-theme="dark"] .learning-badge{background:#15364a;border-color:#315a78;color:#9db4ff}
+.shell[data-theme="dark"] .theme-toggle{background:#15394a;border-color:#2d6070;color:#80e2df}
+.shell[data-theme="dark"] .theme-toggle:hover{background:#1a4a59}
