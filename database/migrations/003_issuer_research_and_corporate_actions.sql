@@ -19,6 +19,10 @@ CREATE TABLE IF NOT EXISTS issuers (
 
 -- Effective-dated issuer facts support name/sector/website changes without
 -- rewriting what was known at an earlier point in time.
+ALTER TABLE instruments
+    ADD COLUMN IF NOT EXISTS issuer_id TEXT REFERENCES issuers(issuer_id);
+CREATE INDEX IF NOT EXISTS instruments_issuer_idx ON instruments(issuer_id);
+
 CREATE TABLE IF NOT EXISTS issuer_profile_versions (
     profile_version_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     issuer_id TEXT NOT NULL REFERENCES issuers(issuer_id),
@@ -153,7 +157,7 @@ CREATE INDEX IF NOT EXISTS issuer_announcements_issuer_date_idx
 
 -- Public-facing read views inherit publication approval from the linked dataset
 -- and source. Raw tables remain private; grants/RLS are a separate deployment step.
-CREATE OR REPLACE VIEW public_issuer_financial_facts AS
+CREATE OR REPLACE VIEW public_issuer_financial_facts WITH (security_invoker = true) AS
 SELECT i.issuer_id, i.display_name, p.statement_type, p.period_start,
        p.period_end, p.fiscal_year, p.fiscal_period, p.reporting_basis,
        p.audited, f.metric_code, f.metric_label, f.numeric_value,
@@ -167,16 +171,21 @@ WHERE d.publication_status = 'approved_public'
   AND d.validation_status = 'passed'
   AND s.permission_status = 'approved';
 
-CREATE OR REPLACE VIEW public_issuer_dividends AS
-SELECT v.* FROM dividends v
+CREATE OR REPLACE VIEW public_issuer_dividends WITH (security_invoker = true) AS
+SELECT v.dividend_id, v.issuer_id, v.instrument_id, v.dividend_type,
+       v.amount_per_share, v.currency, v.declaration_date, v.ex_dividend_date,
+       v.record_date, v.payment_date, v.fiscal_period, v.status, v.dataset_id
+FROM dividends v
 JOIN datasets d ON d.dataset_id = v.dataset_id
 JOIN data_sources s ON s.source_id = d.source_id
 WHERE d.publication_status = 'approved_public'
   AND d.validation_status = 'passed'
   AND s.permission_status = 'approved';
 
-CREATE OR REPLACE VIEW public_issuer_announcements AS
-SELECT a.* FROM issuer_announcements a
+CREATE OR REPLACE VIEW public_issuer_announcements WITH (security_invoker = true) AS
+SELECT a.announcement_id, a.issuer_id, a.announcement_type, a.headline,
+       a.summary, a.announced_at, a.document_url, a.dataset_id
+FROM issuer_announcements a
 JOIN datasets d ON d.dataset_id = a.dataset_id
 JOIN data_sources s ON s.source_id = d.source_id
 WHERE d.publication_status = 'approved_public'
