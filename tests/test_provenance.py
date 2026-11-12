@@ -111,7 +111,8 @@ def test_record_is_immutable():
     assert record.validation_status == ValidationStatus.PASSED
     assert isinstance(record.collected_at, datetime)
     assert record.collected_at.utcoffset() is not None
-\n
+
+
 def test_null_collection_timestamp_is_rejected():
     with pytest.raises(ValueError, match="cannot be null"):
         DatasetProvenance.from_mapping(base_record(collected_at=None))
