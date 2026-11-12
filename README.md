@@ -17,8 +17,9 @@ Market reports: https://www.mse.co.mw/market/reports
 3. Validation, cleaning and relational data model.
 4. Exploratory and quantitative analysis.
 5. Time-series and machine-learning experiments.
-6. Interactive analytics dashboard.
-7. Documentation, reproducibility and deployment.
+6. Interactive analytics dashboard and equities research tools.
+7. Investor Education & Insights Centre: MSE 101, glossary, guided learning, contextual metric explanations and evidence-based company explainers.
+8. Documentation, reproducibility and deployment.
 
 ## Technology
 Next.js, TypeScript, Recharts, Lucide icons. Python analytics/ETL and PostgreSQL are planned.
