@@ -381,3 +381,30 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#28bfc6}
 .shell[data-theme="dark"] .learning-badge{background:#15364a;border-color:#315a78;color:#9db4ff}
 .shell[data-theme="dark"] .theme-toggle{background:#15394a;border-color:#2d6070;color:#80e2df}
 .shell[data-theme="dark"] .theme-toggle:hover{background:#1a4a59}
+
+
+/* Evidence-first issuer research workspace */
+.company-research{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+.research-empty{padding:34px;max-width:100%;text-align:left}
+.research-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#e8f8f7;color:#008f83;margin-bottom:18px}
+.research-empty>small{font-size:10px;font-weight:800;letter-spacing:1.2px;color:#008f83}
+.research-empty h2{font-size:25px;margin:9px 0;color:#17243b}
+.research-empty>p{max-width:760px;line-height:1.7;color:#78869b;font-size:13px}
+.research-modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}
+.research-modules>div{border:1px solid #e3eaf1;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:7px}
+.research-modules b{font-size:13px;color:#17243b}
+.research-modules span{font-size:12px;line-height:1.6;color:#78869b}
+.research-status{display:flex;align-items:flex-start;gap:10px;padding:14px;border:1px solid #cfeeed;background:#f2fbfa;border-radius:10px;color:#176b82;font-size:12px;line-height:1.6;margin-bottom:16px}
+.research-status svg{flex-shrink:0;margin-top:2px}
+.research-status b{color:#17465a}
+.research-empty>a{color:#315bd6;font-size:12px;font-weight:700;text-decoration:none}
+.research-empty>a:hover{text-decoration:underline}
+.shell[data-theme="dark"] .research-icon{background:#16414c;color:#56d8d3}
+.shell[data-theme="dark"] .research-empty>small{color:#58d6d1}
+.shell[data-theme="dark"] .research-empty h2,.shell[data-theme="dark"] .research-modules b{color:#e3eef7}
+.shell[data-theme="dark"] .research-empty>p,.shell[data-theme="dark"] .research-modules span{color:#9aafc2}
+.shell[data-theme="dark"] .research-modules>div{border-color:#29445b}
+.shell[data-theme="dark"] .research-status{background:#123847;border-color:#28576a;color:#b9dfe2}
+.shell[data-theme="dark"] .research-status b{color:#e0f4f4}
+.shell[data-theme="dark"] .research-empty>a{color:#8faaff}
+@media(max-width:700px){.research-empty{padding:22px}.research-modules{grid-template-columns:1fr}.research-empty h2{font-size:21px}}
