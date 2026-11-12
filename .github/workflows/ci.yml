@@ -1,5 +1,9 @@
 name: MSE Analytics CI
 
+concurrency:
+  group: mse-analytics-ci-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main]
