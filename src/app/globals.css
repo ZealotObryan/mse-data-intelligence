@@ -184,3 +184,130 @@ footer span:before{content:""}
 .education-note b{color:#80672f}
 @media(max-width:850px){.academy-grid{grid-template-columns:1fr}}
 @media(max-width:560px){.academy-intro{align-items:flex-start;padding:18px;flex-direction:column}.learning-badge{display:flex;align-items:center;padding:10px 13px}.academy-intro h2{font-size:21px}}
+
+
+/* Forest-green identity: Institutional Forest (A) + Modern Sage (C), with Dark Market Terminal (B). */
+:root{color-scheme:light;--ink:#17372c;--muted:#718177;--line:#e2e9e1;--blue:#245b43;--navy:#102d25;--green:#287b50;--red:#c65f63}
+body{background:#f3f5ef;color:var(--ink)}
+.sidebar{background:#102d25}
+.brand-icon{background:linear-gradient(145deg,#4b8968,#1d4938);box-shadow:0 7px 20px #0a211a55}
+.brand b span{color:#b8d2bf}
+.market{border-color:#2a4b3d;background:#ffffff08}
+.market>b{background:#244c3a;color:#d4e5d8}
+.nav-item.active{background:#244b39;box-shadow:inset 3px 0 #a9cbb3}
+.status{border-color:#2a4b3d}
+header{background:#fff;border-color:var(--line)}
+.crumb b,.heading h1{color:#17372c}
+.heading small{color:#788a7e}
+.primary{background:#1d4938;border-color:#1d4938;box-shadow:0 4px 10px #1d493820}
+.primary:hover{box-shadow:0 7px 16px #1d493830}
+.metric,.panel{border-color:#e2e9e1;box-shadow:0 3px 12px #17372c08}
+.metric-top i{background:#edf4ed;color:#347653}
+.metric>strong{color:#17372c}
+.up{color:#287b50}
+.grid .chart .recharts-cartesian-grid line{stroke:#e5ebe3}
+.recharts-text{fill:#718177}
+.tag{background:#f0f4ed;color:#718177}
+tbody tr:hover{background:#f5f8f3}
+td{border-color:#edf1eb}
+td b,.company-link{color:#294638}
+.company-link:hover,.sort-button:hover,.text-btn:hover{color:#1d6945}
+.logo{background:#edf4ed;color:#347653}
+.c1{background:#e7f3e9;color:#287b50}
+.c2{background:#f6efe1;color:#a47b36}
+.c3{background:#e9f0e9;color:#54745d}
+.gain{background:#eaf4eb;color:#287b50}
+.insight{background:linear-gradient(145deg,#1d4938,#102d25)}
+.insight small{color:#c0d9c6}
+.insight button{color:#d5e7d9}
+.search:focus-within{border-color:#8caf96;box-shadow:0 0 0 3px #34765318}
+.sector-select select{background:#fff;color:#294638}
+.security-detail{border-color:#dce9dd;background:#f5f8f2}
+.security-detail b{color:#294638}
+.academy-intro{border-color:#dce8dc;background:linear-gradient(120deg,#fff 0%,#edf4eb 100%)}
+.academy-intro small{color:#347653}
+.academy-intro h2{color:#17372c}
+.learning-badge{border-color:#dce8dc;color:#245b43}
+.education-note{border-color:#e6e4d4;background:#f8f6ed;color:#80672f}
+.theme-toggle{display:inline-flex;align-items:center;gap:7px;border:1px solid #dce7dc;border-radius:8px;background:#f5f8f3;color:#245b43;padding:7px 10px;font-size:10px;font-weight:700;letter-spacing:0;cursor:pointer}
+.theme-toggle:hover{background:#eaf2e9}
+.theme-toggle:focus-visible{outline:3px solid #8caf96;outline-offset:3px}
+@media(max-width:560px){.theme-label{display:none}.theme-toggle{padding:7px}}
+/* Dark Market Terminal theme */
+.shell[data-theme="dark"]{color-scheme:dark;--ink:#e3eee6;--muted:#9aafa1;--line:#294338;--blue:#8dbb9a;--navy:#0a1d17;--green:#79bd8c;--red:#ef8585;background:#0b1b15;color:#e3eee6}
+.shell[data-theme="dark"] .sidebar{background:#081811;border-right:1px solid #20382c}
+.shell[data-theme="dark"] .brand-icon{background:linear-gradient(145deg,#4d9568,#1c5138)}
+.shell[data-theme="dark"] .brand b span{color:#9bc7a7}
+.shell[data-theme="dark"] .market{border-color:#294338;background:#ffffff06}
+.shell[data-theme="dark"] .market>b{background:#244b37;color:#d5e8d9}
+.shell[data-theme="dark"] .nav-item{color:#a9bdb0}
+.shell[data-theme="dark"] .nav-item.active{background:#1d4030;color:#f1f7f2;box-shadow:inset 3px 0 #8fbd9b}
+.shell[data-theme="dark"] .status{border-color:#294338}
+.shell[data-theme="dark"] .main{background:#0b1b15}
+.shell[data-theme="dark"] header{background:#10271d;border-color:#294338}
+.shell[data-theme="dark"] .crumb,.shell[data-theme="dark"] .head-right{color:#a9bdb0}
+.shell[data-theme="dark"] .crumb b,.shell[data-theme="dark"] .heading h1{color:#edf5ef}
+.shell[data-theme="dark"] .heading p,.shell[data-theme="dark"] .heading small,.shell[data-theme="dark"] .row-head small{color:#9aafa1}
+.shell[data-theme="dark"] .notice{background:#292719;border-color:#51482b;color:#d8c58c}
+.shell[data-theme="dark"] .notice span{color:#c4b783}
+.shell[data-theme="dark"] .notice a{color:#e0cb8c}
+.shell[data-theme="dark"] .primary{background:#2c6848;border-color:#3c805a;color:#fff}
+.shell[data-theme="dark"] .metric,.shell[data-theme="dark"] .panel{background:#12281e;border-color:#294338;box-shadow:0 4px 16px #00000018}
+.shell[data-theme="dark"] .metric-top{color:#a9bdb0}
+.shell[data-theme="dark"] .metric-top i{background:#1c3b2b;color:#9ac8a6}
+.shell[data-theme="dark"] .metric>strong,.shell[data-theme="dark"] .panel h2,.shell[data-theme="dark"] .panel-head b,.shell[data-theme="dark"] .row-head b{color:#edf5ef}
+.shell[data-theme="dark"] .metric-foot small,.shell[data-theme="dark"] .panel-head small,.shell[data-theme="dark"] .caption{color:#8fa597}
+.shell[data-theme="dark"] .up{color:#83c994}
+.shell[data-theme="dark"] .down{color:#ef8585}
+.shell[data-theme="dark"] .tag{background:#1b3628;color:#a9c6b0}
+.shell[data-theme="dark"] .recharts-cartesian-grid line{stroke:#294338}
+.shell[data-theme="dark"] .recharts-text{fill:#9aafa1}
+.shell[data-theme="dark"] .recharts-tooltip-wrapper .recharts-default-tooltip{background:#183326!important;border:1px solid #45634e!important;color:#edf5ef!important}
+.shell[data-theme="dark"] .recharts-default-tooltip,.shell[data-theme="dark"] .recharts-tooltip-item,.shell[data-theme="dark"] .recharts-tooltip-label{color:#edf5ef!important}
+.shell[data-theme="dark"] th{color:#91a89a}
+.shell[data-theme="dark"] td{color:#a9bdb0;border-color:#243d30}
+.shell[data-theme="dark"] td b,.shell[data-theme="dark"] .company-link{color:#e0ece3}
+.shell[data-theme="dark"] tbody tr:hover{background:#193326}
+.shell[data-theme="dark"] .logo{background:#1d3c2b;color:#a9d2b1}
+.shell[data-theme="dark"] .c1{background:#1c3d2b;color:#8dcea0}
+.shell[data-theme="dark"] .c2{background:#443923;color:#e1c27d}
+.shell[data-theme="dark"] .c3{background:#283b32;color:#b2cdb9}
+.shell[data-theme="dark"] .gain{background:#1b3b2a;color:#8ed09e}
+.shell[data-theme="dark"] .loss{background:#482a2b;color:#f19a9a}
+.shell[data-theme="dark"] .text-btn{color:#9bc7a7}
+.shell[data-theme="dark"] .text-btn:hover,.shell[data-theme="dark"] .company-link:hover{color:#c0e1c7}
+.shell[data-theme="dark"] .insight{background:linear-gradient(145deg,#1b4934,#10291e);border:1px solid #31563f}
+.shell[data-theme="dark"] .search{background:#10271d;border-color:#345141;color:#a9bdb0}
+.shell[data-theme="dark"] .search input{background:transparent;color:#e3eee6}
+.shell[data-theme="dark"] .sector-select{color:#9aafa1}
+.shell[data-theme="dark"] .sector-select select{background:#10271d;border-color:#345141;color:#e3eee6}
+.shell[data-theme="dark"] .explorer-summary{color:#9aafa1}
+.shell[data-theme="dark"] .explorer-summary b,.shell[data-theme="dark"] .empty-state b{color:#e3eee6}
+.shell[data-theme="dark"] .empty-state{color:#9aafa1}
+.shell[data-theme="dark"] .security-detail{background:#183326;border-color:#345141}
+.shell[data-theme="dark"] .security-detail b{color:#e3eee6}
+.shell[data-theme="dark"] .security-detail small,.shell[data-theme="dark"] .security-detail span{color:#9aafa1}
+.shell[data-theme="dark"] .academy-intro{background:linear-gradient(120deg,#142d21,#1a3829);border-color:#345141}
+.shell[data-theme="dark"] .academy-intro small{color:#9bc7a7}
+.shell[data-theme="dark"] .academy-intro h2{color:#edf5ef}
+.shell[data-theme="dark"] .academy-intro p{color:#b0c2b5}
+.shell[data-theme="dark"] .learning-badge{background:#173326;border-color:#345141;color:#b4d7bc}
+.shell[data-theme="dark"] .lesson,.shell[data-theme="dark"] .glossary-item{border-color:#294338}
+.shell[data-theme="dark"] .lesson-toggle,.shell[data-theme="dark"] .glossary-item>button{color:#dce9df}
+.shell[data-theme="dark"] .lesson-toggle small{color:#91a89a}
+.shell[data-theme="dark"] .lesson>p,.shell[data-theme="dark"] .glossary-item>p{color:#afc1b4}
+.shell[data-theme="dark"] .education-note{background:#292719;border-color:#51482b;color:#d8c58c}
+.shell[data-theme="dark"] .education-note p{color:#c4b783}
+.shell[data-theme="dark"] .education-note b{color:#e0cb8c}
+.shell[data-theme="dark"] .risk-card p,.shell[data-theme="dark"] .method-grid p,.shell[data-theme="dark"] .centered p{color:#a9bdb0}
+.shell[data-theme="dark"] .risk-card em,.shell[data-theme="dark"] .centered>small{color:#91a89a}
+.shell[data-theme="dark"] .callout{background:#172e23;border-color:#345141;color:#b4d7bc}
+.shell[data-theme="dark"] .models b{background:#183326;border-color:#345141;color:#dce9df}
+.shell[data-theme="dark"] .legal{background:#292719;border-color:#51482b;color:#d8c58c}
+.shell[data-theme="dark"] .legal p{color:#c4b783}
+.shell[data-theme="dark"] .legal a{color:#e0cb8c}
+.shell[data-theme="dark"] footer{color:#91a89a;border-color:#294338}
+.shell[data-theme="dark"] .theme-toggle{background:#1b3628;border-color:#3a5945;color:#d4e8d8}
+.shell[data-theme="dark"] .theme-toggle:hover{background:#254633}
+.shell[data-theme="dark"] .scrim{background:#000b07aa}
+@media(prefers-reduced-motion:reduce){.shell[data-theme="dark"] *{transition:none!important}}
