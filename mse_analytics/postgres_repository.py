@@ -96,7 +96,7 @@ def persist_price_stage(
                     licence_name or provenance.licence_name, licence_reference or provenance.licence_reference, permission_status,
                     list(provenance.permitted_uses),
                     getattr(provenance, "redistribution_allowed", None),
-                    attribution_text, terms_reviewed_at,
+                    attribution_text or getattr(provenance, "attribution_text", None), terms_reviewed_at,
                 ),
             )
             source_row = cursor.fetchone()
