@@ -39,3 +39,8 @@ Run npm install, then npm run dev.
 Never fabricate market observations. Keep synthetic and real data clearly separated. Preserve source and retrieval metadata. Use time-ordered validation for forecasting. Document assumptions, missingness and limitations. Do not present outputs as investment advice.
 
 No open-source licence is granted yet. Third-party data and trademarks remain subject to their owners' terms.
+
+## Database publication gate
+
+- `database/migrations/002_publication_gate.sql` — database-enforced publication permission checks and an approved-observations read view.
+- `docs/database-publication-gate.md` — publication gate deployment and security notes.
