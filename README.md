@@ -13,7 +13,7 @@ Market reports: https://www.mse.co.mw/market/reports
 
 ## Roadmap
 1. Data-source and licensing assessment.
-2. Permissioned data acquisition and provenance.
+2. Permissioned data acquisition and provenance — framework documented in [Data provenance and validation](docs/data-provenance-and-validation.md) and [dataset schema](schemas/dataset-provenance.schema.json).
 3. Validation, cleaning and relational data model.
 4. Exploratory and quantitative analysis.
 5. Time-series and machine-learning experiments.
