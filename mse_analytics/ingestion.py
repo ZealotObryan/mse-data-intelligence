@@ -83,22 +83,31 @@ def archive_source_artifact(
         if existing_hash != checksum or existing_size != byte_count:
             raise RuntimeError("archive integrity conflict; refusing to overwrite artifact")
     else:
-        temporary = archive_root / f".{checksum}.tmp"
+        temporary_path: Path | None = None
         try:
-            with source.open("rb") as src, temporary.open("xb") as dst:
-                shutil.copyfileobj(src, dst, length=1024 * 1024)
+            with tempfile.NamedTemporaryFile(
+                mode="wb", prefix=f".{checksum}.", suffix=".tmp",
+                dir=archive_root, delete=False,
+            ) as dst:
+                temporary_path = Path(dst.name)
+                with source.open("rb") as src:
+                    shutil.copyfileobj(src, dst, length=1024 * 1024)
                 dst.flush()
                 os.fsync(dst.fileno())
-            copied_hash, copied_size = _sha256(temporary)
+            copied_hash, copied_size = _sha256(temporary_path)
             if copied_hash != checksum or copied_size != byte_count:
                 raise RuntimeError("source changed during archive copy; artifact not committed")
             try:
-                temporary.rename(archived)
+                # Hard-link creation is atomic and fails rather than replacing an
+                # existing content-addressed artifact.
+                os.link(temporary_path, archived)
             except FileExistsError:
-                # A concurrent identical ingestion won the archive race.
-                temporary.unlink(missing_ok=True)
+                existing_hash, existing_size = _sha256(archived)
+                if existing_hash != checksum or existing_size != byte_count:
+                    raise RuntimeError("archive integrity conflict; refusing to overwrite artifact")
         finally:
-            temporary.unlink(missing_ok=True)
+            if temporary_path is not None:
+                temporary_path.unlink(missing_ok=True)
 
     if not archived.is_file():
         raise RuntimeError("archive artifact was not committed")
