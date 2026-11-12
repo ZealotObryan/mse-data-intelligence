@@ -92,8 +92,8 @@ def persist_price_stage(
                 RETURNING source_id
                 """,
                 (
-                    source_key, provenance.source_name, source_url, source_class,
-                    licence_name, licence_reference, permission_status,
+                    source_key, provenance.source_name, source_url or provenance.source_url, source_class,
+                    licence_name or provenance.licence_name, licence_reference or provenance.licence_reference, permission_status,
                     list(provenance.permitted_uses),
                     getattr(provenance, "redistribution_allowed", None),
                     attribution_text, terms_reviewed_at,
