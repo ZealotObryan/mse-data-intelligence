@@ -25,6 +25,10 @@ Market reports: https://www.mse.co.mw/market/reports
 
 The Python package now includes typed dataset provenance and a publication permission gate in `mse_analytics/provenance.py`, plus non-destructive staged price checks in `mse_analytics/data_quality.py`. Automated tests cover provenance parsing, explicit redistribution permission, validation-state blocking, duplicate observation keys, invalid values and date ordering. These utilities are not yet connected to a live MSE ingestion source; no real market feed is currently being imported.
 
+## Ingestion foundation
+
+`mse_analytics/ingestion.py` provides a local development adapter that archives source artifacts under their SHA-256 content hash and appends an idempotent JSONL ingestion manifest. It does not fetch external data or provide production object-storage guarantees; production should use access-controlled immutable object storage while preserving the same checksum and manifest contract. Tests cover checksum integrity, idempotency, changed source content and required metadata.
+
 ## Technology
 Next.js, TypeScript, Recharts, Lucide icons. Python analytics/ETL and PostgreSQL are planned.
 
