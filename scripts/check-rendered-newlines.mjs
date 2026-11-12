@@ -16,11 +16,9 @@ async function scan(directory) {
     const source = await readFile(filePath, "utf8");
     // Catch the exact two-character escape sequence when it appears as
     // rendered JSX text, including standalone JSX expression strings.
-    const patterns = [
-      />\\\\n</,
-      /\{\s*["']\\\\n["']\s*\}/,
-    ];
-    if (patterns.some((pattern) => pattern.test(source))) {
+    const hasLiteralTextNode = source.includes(">\\\\n<");
+    const hasLiteralExpression = source.includes('{"\\\\n"}') || source.includes("{'\\\\n'}");
+    if (hasLiteralTextNode || hasLiteralExpression) {
       offenders.push(path.relative(process.cwd(), filePath));
     }
   }
