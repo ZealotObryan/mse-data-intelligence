@@ -40,6 +40,10 @@ The provider-independent onboarding, canonical observation contract, reliability
 
 The issuer and corporate-actions schema is defined in [migration 003](database/migrations/003_issuer_research_and_corporate_actions.sql), with the data model and research rules in [Issuer research and corporate actions](docs/issuer-research-and-corporate-actions.md). It covers issuer profiles, financial statement periods and facts, dividends, corporate actions and announcements. The migration creates schema only; it does not import or fabricate company data.
 
+## Financial analysis engine
+
+`mse_analytics/financial_metrics.py` calculates revenue and earnings growth, profitability margins, liquidity, leverage, EPS, P/E and dividend yield. Missing or non-comparable inputs are withheld with explicit reasons. See [financial analysis engine documentation](docs/financial-analysis-engine.md). The engine is unit-tested but not yet connected to live issuer data or the dashboard.
+
 ## Technology
 Next.js, TypeScript, Recharts, Lucide icons. Python analytics/ETL and PostgreSQL schema foundations are in the repository; a production database and live source integration are not yet connected.
 
