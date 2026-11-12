@@ -4,6 +4,7 @@ import path from "node:path";
 const root = path.resolve("src/app");
 const extensions = new Set([".tsx", ".ts", ".jsx", ".js"]);
 const offenders = [];
+const literalSlashN = String.fromCharCode(92) + "n";
 
 async function scan(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -14,10 +15,10 @@ async function scan(directory) {
     }
     if (!extensions.has(path.extname(entry.name))) continue;
     const source = await readFile(filePath, "utf8");
-    // Catch the exact two-character escape sequence when it appears as
-    // rendered JSX text, including standalone JSX expression strings.
-    const hasLiteralTextNode = source.includes(">\\\\n<");
-    const hasLiteralExpression = source.includes('{"\\\\n"}') || source.includes("{'\\\\n'}");
+    const hasLiteralTextNode = source.includes(">" + literalSlashN + "<");
+    const hasLiteralExpression =
+      source.includes('{"' + literalSlashN + '"}') ||
+      source.includes("{'" + literalSlashN + "'}");
     if (hasLiteralTextNode || hasLiteralExpression) {
       offenders.push(path.relative(process.cwd(), filePath));
     }
