@@ -30,7 +30,7 @@ The Python package now includes typed dataset provenance and a publication permi
 `mse_analytics/ingestion.py` provides a local development adapter that archives source artifacts under their SHA-256 content hash and appends an idempotent JSONL ingestion manifest. It does not fetch external data or provide production object-storage guarantees; production should use access-controlled immutable object storage while preserving the same checksum and manifest contract. Tests cover checksum integrity, idempotency, changed source content and required metadata.
 
 ## Technology
-Next.js, TypeScript, Recharts, Lucide icons. Python analytics/ETL and PostgreSQL are planned.
+Next.js, TypeScript, Recharts, Lucide icons. Python analytics/ETL and PostgreSQL schema foundations are in the repository; a production database and live source integration are not yet connected.
 
 ## Local development
 Run npm install, then npm run dev.
