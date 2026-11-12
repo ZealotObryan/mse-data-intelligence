@@ -36,6 +36,10 @@ The Python package now includes typed dataset provenance and a publication permi
 
 The provider-independent onboarding, canonical observation contract, reliability controls and rollout process are documented in [Market data provider integration](docs/market-data-provider-integration.md). No API provider is connected or approved yet; the integration remains disabled until data provenance and licensing are verified.
 
+## Issuer research foundation
+
+The issuer and corporate-actions schema is defined in [migration 003](database/migrations/003_issuer_research_and_corporate_actions.sql), with the data model and research rules in [Issuer research and corporate actions](docs/issuer-research-and-corporate-actions.md). It covers issuer profiles, financial statement periods and facts, dividends, corporate actions and announcements. The migration creates schema only; it does not import or fabricate company data.
+
 ## Technology
 Next.js, TypeScript, Recharts, Lucide icons. Python analytics/ETL and PostgreSQL schema foundations are in the repository; a production database and live source integration are not yet connected.
 
