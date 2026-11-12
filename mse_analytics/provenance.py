@@ -117,8 +117,8 @@ class DatasetProvenance:
             DataClass.LICENSED_MARKET,
             DataClass.ISSUER_DISCLOSURE,
         }:
-            if not source_url or not payload.get("licence_name") or redistribution is None:
-                raise ValueError("external datasets require source_url, licence_name and explicit redistribution status")
+            if not source_url or not payload.get("licence_name") or "redistribution_allowed" not in payload:
+                raise ValueError("external datasets require source_url, licence_name and a redistribution_allowed field (null means unknown)")
 
         return cls(
             dataset_id=payload["dataset_id"].strip(),
