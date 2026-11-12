@@ -59,6 +59,15 @@ class DatasetProvenance:
         missing = sorted(required - payload.keys())
         if missing:
             raise ValueError(f"missing required provenance fields: {', '.join(missing)}")
+        allowed = required | {
+            "source_url", "source_document_id", "published_at", "coverage_start",
+            "coverage_end", "licence_name", "licence_reference", "permitted_uses",
+            "redistribution_allowed", "attribution_text", "collector_version",
+            "checksum", "notes",
+        }
+        unknown = sorted(payload.keys() - allowed)
+        if unknown:
+            raise ValueError(f"unknown provenance fields: {', '.join(unknown)}")
 
         def parse_datetime(field: str) -> datetime | None:
             value = payload.get(field)
@@ -120,12 +129,16 @@ class DatasetProvenance:
             if not source_url or not payload.get("licence_name") or "redistribution_allowed" not in payload:
                 raise ValueError("external datasets require source_url, licence_name and a redistribution_allowed field (null means unknown)")
 
+        collected_at = parse_datetime("collected_at")
+        if collected_at is None:
+            raise ValueError("collected_at is required and cannot be null")
+
         return cls(
             dataset_id=payload["dataset_id"].strip(),
             dataset_name=payload["dataset_name"].strip(),
             data_class=data_class,
             source_name=payload["source_name"].strip(),
-            collected_at=parse_datetime("collected_at"),  # type: ignore[arg-type]
+            collected_at=collected_at,
             validation_status=status,
             source_url=source_url,
             source_document_id=payload.get("source_document_id"),
