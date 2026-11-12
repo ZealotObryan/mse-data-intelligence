@@ -164,3 +164,23 @@ footer span:before{content:""}
 .security-detail span{font-size:9px;color:#8995a8}
 @media(max-width:760px){.explorer-head{display:block}.explorer-controls{margin-top:14px;flex-wrap:wrap}.explorer-controls .search{flex:1}.explorer-controls .search input{width:100%}.security-detail{align-items:flex-start;flex-wrap:wrap}.security-detail>div{min-width:40%}}
 @media(max-width:480px){.explorer-controls{align-items:stretch;flex-direction:column}.sector-select select{max-width:none;width:100%}.explorer-summary{margin-top:10px}}
+
+.academy{display:grid;gap:16px}
+.academy-intro{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 26px;border:1px solid #e2e9f5;border-radius:13px;background:linear-gradient(120deg,#fff 0%,#f3f6ff 100%)}
+.academy-intro small{font-size:9px;letter-spacing:.13em;color:#6d82bd;font-weight:700}
+.academy-intro h2{font:800 24px Manrope;letter-spacing:-.6px;margin:9px 0 7px;color:#1b2942}
+.academy-intro p{max-width:650px;color:#7f8ba0;font-size:11px;line-height:1.8;margin:0}
+.learning-badge{display:grid;justify-items:center;gap:5px;min-width:125px;padding:17px;border:1px solid #e0e7f7;background:#fff;border-radius:11px;color:#5875ce}
+.learning-badge b{font:800 13px Manrope}.learning-badge small{font-size:8px;letter-spacing:.04em}
+.academy-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,1fr);gap:15px}
+.lesson{border-top:1px solid #eff2f6}
+.lesson-toggle,.glossary-item>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;border:0;background:transparent;text-align:left;padding:14px 0;color:#344158}
+.lesson-toggle span{display:grid;gap:5px}.lesson-toggle b,.glossary-item b{font-size:11px}.lesson-toggle small{font-size:9px;color:#9aa5b5}
+.lesson-toggle:hover,.glossary-item>button:hover{color:#4569d8}
+.lesson>p,.glossary-item>p{margin:0 0 15px;padding:0 0 0 1px;color:#78869b;font-size:11px;line-height:1.85}
+.glossary-item{border-top:1px solid #eff2f6}.glossary-item>button{padding:13px 0}
+.education-note{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border:1px solid #f0e5c9;border-radius:10px;background:#fffaf0;color:#9b7a39}
+.education-note p{margin:0;color:#8d7a54;font-size:10px;line-height:1.8}
+.education-note b{color:#80672f}
+@media(max-width:850px){.academy-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.academy-intro{align-items:flex-start;padding:18px;flex-direction:column}.learning-badge{display:flex;align-items:center;padding:10px 13px}.academy-intro h2{font-size:21px}}
