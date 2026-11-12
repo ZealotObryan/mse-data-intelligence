@@ -10,12 +10,15 @@ from mse_analytics.staging import stage_price_csv
 
 
 class FakeCursor:
-    def __init__(self):
+    def __init__(self, *, fail_on=None):
+        self.fail_on = fail_on
         self.statements = []
         self.returned = None
         self._returning = iter([(11,), (22,)])
     def execute(self, query, params=None):
         self.statements.append((query, params))
+        if self.fail_on and self.fail_on in query:
+            raise RuntimeError("simulated database failure")
         if "RETURNING source_id" in query:
             self.returned = (11,)
         elif "RETURNING ingestion_id" in query:
@@ -27,8 +30,8 @@ class FakeCursor:
 
 
 class FakeConnection:
-    def __init__(self):
-        self.fake_cursor = FakeCursor()
+    def __init__(self, *, fail_on=None):
+        self.fake_cursor = FakeCursor(fail_on=fail_on)
         self.committed = False
         self.rolled_back = False
     @contextmanager
@@ -118,3 +121,18 @@ def test_invalid_permission_status_is_rejected_before_database_write(tmp_path):
             source_class="synthetic_demo", permission_status="public",
         )
     assert connection.fake_cursor.statements == []
+
+
+
+def test_database_failure_rolls_back_entire_persistence_transaction(tmp_path):
+    result = make_stage(tmp_path)
+    connection = FakeConnection(fail_on="INSERT INTO market_observations")
+
+    with pytest.raises(RuntimeError, match="simulated database failure"):
+        persist_price_stage(
+            connection, result, source_key="synthetic-generator-v1",
+            source_class="synthetic_demo", permission_status="approved",
+        )
+
+    assert connection.committed is False
+    assert connection.rolled_back is True
