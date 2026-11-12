@@ -5,6 +5,9 @@ Independent financial data science and market intelligence research prototype fo
 ## Current status
 The initial dashboard uses **synthetic illustrative data only**. It does not represent actual MSE prices, index values, turnover, market capitalisation, company performance or forecasts.
 
+
+- Transactional PostgreSQL persistence adapter: `mse_analytics/postgres_repository.py` and `docs/postgres-persistence.md`. It is implemented but not connected to a provisioned database; no live market data is imported.
+
 ## Data governance
 The MSE website states that access to and use of its website and data is for personal and non-commercial use. It states that parties intending commercial use must first notify the Exchange to sign a data agreement. This public-facing prototype therefore does not republish MSE market data. Before integrating real MSE data into a public product, obtain written permission and agree permitted scope, storage, display, caching and redistribution terms.
 
