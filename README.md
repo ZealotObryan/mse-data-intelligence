@@ -21,6 +21,10 @@ Market reports: https://www.mse.co.mw/market/reports
 7. Investor Education & Insights Centre: MSE 101, glossary, guided learning, contextual metric explanations and evidence-based company explainers.
 8. Documentation, reproducibility and deployment.
 
+## Data validation implementation
+
+The Python package now includes typed dataset provenance and a publication permission gate in `mse_analytics/provenance.py`, plus non-destructive staged price checks in `mse_analytics/data_quality.py`. Automated tests cover provenance parsing, explicit redistribution permission, validation-state blocking, duplicate observation keys, invalid values and date ordering. These utilities are not yet connected to a live MSE ingestion source; no real market feed is currently being imported.
+
 ## Technology
 Next.js, TypeScript, Recharts, Lucide icons. Python analytics/ETL and PostgreSQL are planned.
 
