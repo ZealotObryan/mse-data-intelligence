@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mse-data-intelligence.example/schemas/dataset-provenance.schema.json",
+  "title": "MSE Data Intelligence dataset provenance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dataset_id",
+    "dataset_name",
+    "data_class",
+    "source_name",
+    "collected_at",
+    "validation_status"
+  ],
+  "properties": {
+    "dataset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "data_class": {
+      "enum": [
+        "synthetic_demo",
+        "official_public",
+        "licensed_market",
+        "issuer_disclosure",
+        "derived"
+      ]
+    },
+    "source_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "source_document_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "collected_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "published_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "coverage_start": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "coverage_end": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "licence_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "licence_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "permitted_uses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "redistribution_allowed": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "attribution_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "collector_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "checksum": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "validation_status": {
+      "enum": [
+        "pending",
+        "passed",
+        "warning",
+        "rejected"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "data_class": {
+            "const": "synthetic_demo"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "source_name": {
+            "const": "Internal synthetic data generator"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "data_class": {
+            "enum": [
+              "official_public",
+              "licensed_market",
+              "issuer_disclosure"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "source_url",
+          "licence_name",
+          "redistribution_allowed"
+        ]
+      }
+    }
+  ]
+}
