@@ -25,6 +25,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
+      - run: node scripts/check-rendered-newlines.mjs
       - run: npm run build
 
   python:
