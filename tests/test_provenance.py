@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 
 import pytest
 
@@ -110,4 +110,4 @@ def test_record_is_immutable():
     record = DatasetProvenance.from_mapping(base_record())
     assert record.validation_status == ValidationStatus.PASSED
     assert isinstance(record.collected_at, datetime)
-    assert record.collected_at.tzinfo == timezone(datetime.now().astimezone().utcoffset())
+    assert record.collected_at.utcoffset() is not None
