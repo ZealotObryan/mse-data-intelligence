@@ -146,3 +146,34 @@ Use quizzes, worked examples and simulated exercises. Simulations must be clearl
 4. Learning examples are visibly labelled as illustrative where applicable.
 5. Every real-market insight has traceable evidence and dates.
 6. No feature presents unsupported predictions or automated buy/sell instructions.
+
+
+## Expanded MSE 101 curriculum
+
+The first guided pathway is delivered as nine sequential lessons. Each lesson includes explanatory sections, a fictional worked example, a key takeaway and a knowledge check with feedback. Users can open lessons in any order and mark them complete; the initial progress indicator is session-based and is not an account-level learning record.
+
+| Lesson | Learning outcome |
+|---|---|
+| 1. The stock exchange: the big picture | Explain the purpose of an exchange, the role of MSE, and the difference between primary and secondary markets. |
+| 2. Shares and ownership | Explain what a share represents, shareholder rights, equity capital and dilution. |
+| 3. How to prepare to invest | Identify personal financial considerations, the role of licensed brokers and questions to ask before opening an account. |
+| 4. Orders, trading and settlement | Distinguish market and limit orders, order execution and settlement. |
+| 5. Returns, dividends and costs | Calculate a simple price return and distinguish capital gains, dividends, costs and taxes. |
+| 6. Read prices and market information | Interpret last price, volume, turnover, liquidity and index information with attention to freshness. |
+| 7. Understand company reports | Identify the purpose of the income statement, statement of financial position and cash-flow statement; interpret selected ratios cautiously. |
+| 8. Risk, diversification and investor behaviour | Recognise common risk types, concentration risk and behavioural traps. |
+| 9. A practical investor due-diligence checklist | Apply a structured set of verification questions before making an investment decision. |
+
+### Lesson content and assessment standards
+
+- Use plain English first, then introduce the technical term and its meaning.
+- Include a practical explanation of why each concept matters, not only a dictionary definition.
+- Use worked examples with transparent arithmetic and clearly fictional MWK figures. Never imply that an illustrative company, price or transaction is real.
+- Knowledge checks should test understanding and explain why the correct answer is correct. They are educational checks, not a suitability test or a recommendation.
+- Keep progress tracking honest: session-only progress must not be described as saved to a user account.
+- Treat broker licensing, account opening, trading hours, order handling, settlement cycles, taxes and other procedural details as changeable. Link users to current official sources rather than inventing or hardcoding unverified MSE procedures.
+- Do not imply that a company must pay dividends, that a limit order will execute, that diversification prevents all losses, or that historical performance predicts future returns.
+
+### Further curriculum roadmap
+
+After the beginner pathway, develop separate foundation/intermediate modules for reading annual reports in depth, interpreting corporate announcements and corporate actions, valuation methods and their limitations, portfolio construction, risk measurement, and quantitative market analysis. Advanced content should show assumptions, formulas, data requirements and limitations, and should only use real market or issuer information when source permissions and provenance are established.
