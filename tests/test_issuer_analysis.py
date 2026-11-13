@@ -85,3 +85,20 @@ def test_prior_values_cannot_be_smuggled_into_current_facts():
             prior_context=context("2024-12-31"),
             prior_facts={"revenue": 90},
         )
+
+def test_prior_period_must_be_chronologically_earlier():
+    with pytest.raises(ValueError, match="before the current period"):
+        analyze_issuer_period(
+            context=context("2025-12-31"),
+            current_facts={"revenue": 120},
+            prior_context=context("2026-12-31"),
+            prior_facts={"revenue": 100},
+        )
+
+
+def test_period_end_must_be_iso_date():
+    with pytest.raises(ValueError, match="ISO date"):
+        analyze_issuer_period(
+            context=context("FY2025"),
+            current_facts={},
+        )
