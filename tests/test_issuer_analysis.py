@@ -61,7 +61,8 @@ def test_price_and_dividend_inputs_are_explicit_and_caveated():
     )
     assert result.metrics.price_to_earnings == pytest.approx(10)
     assert result.metrics.dividend_yield == pytest.approx(.05)
-    assert len(result.caveats) == 2
+    assert len(result.caveats) == 3
+    assert any("Growth metrics are unavailable" in item for item in result.caveats)
 
 
 def test_context_rejects_invalid_currency_and_audit_flag():
