@@ -121,7 +121,7 @@ def fetch_published_issuer_period(
             value = float(numeric_value)
         except (TypeError, ValueError) as exc:
             raise ValueError(f"metric {metric_code!r} is not numeric") from exc
-        if not __import__("math").isfinite(value):
+        if not math.isfinite(value):
             raise ValueError(f"metric {metric_code!r} must be finite")
         facts[target_key] = value
 
