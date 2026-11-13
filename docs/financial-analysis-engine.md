@@ -78,3 +78,11 @@ print(metrics.to_dict())
 ## Current status
 
 Unit tests cover normal calculations, missing values, zero denominators, negative earnings, invalid values and serialisation. This engine is not yet connected to a live database or the web dashboard. No actual MSE issuer financial facts have been loaded.
+
+## Comparable-period analysis adapter
+
+`mse_analytics/issuer_analysis.py` adds a metadata-aware wrapper around the calculation engine. Supply a `ReportingContext` for the current statement period and a mapping of current facts. Prior-period context and facts must be supplied together; the adapter checks issuer identity, currency, reporting basis and distinct period-end dates before using prior revenue/net income for growth calculations.
+
+Market price and annual dividend per share are explicit optional arguments rather than being silently mixed into statement facts. The result retains issuer, period, currency, reporting basis, audit status and caveats. Unconfirmed audit status is surfaced. This is still a pure Python layer: it does not query PostgreSQL, decide source permissions or connect the dashboard.
+
+The caller must still verify that current and prior periods have comparable duration, consolidation scope, accounting policies and units, and that market-price/dividend reference dates align with the statement and dividend basis. The adapter does not establish these facts automatically.
