@@ -69,3 +69,18 @@ def test_metrics_are_serialisable_to_dict():
     payload = result.to_dict()
     assert payload["revenue_growth"] == pytest.approx(.25)
     assert isinstance(payload["unavailable_reasons"], dict)
+
+@pytest.mark.parametrize(
+    "facts,metric",
+    [
+        ({"total_debt": 20, "total_equity": -5}, "debt_to_equity"),
+        ({"current_assets": 20, "current_liabilities": -5}, "current_ratio"),
+        ({"net_income": 20, "weighted_average_shares": 0}, "earnings_per_share"),
+        ({"market_price": 0, "annual_dividend_per_share": 2}, "dividend_yield"),
+        ({"net_income": 20, "weighted_average_shares": 2, "market_price": -1}, "price_to_earnings"),
+    ],
+)
+def test_ratios_with_economically_invalid_denominators_are_unavailable(facts, metric):
+    result = calculate_financial_metrics(facts)
+    assert getattr(result, metric) is None
+    assert metric in result.unavailable_reasons
