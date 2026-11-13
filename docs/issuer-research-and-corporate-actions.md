@@ -57,3 +57,10 @@ This migration has not been applied to a live database. There is no provisioned 
 The adapter maps exact metric codes to the financial calculation engine's canonical fact keys, checks reporting metadata consistency, enforces expected units, rejects duplicate mapped facts and mixed monetary currencies, and returns dataset IDs for lineage. Unknown metric codes are listed but not interpreted. It does not convert currencies, infer missing facts, or retrieve price/dividend data.
 
 The tests use a fake DB-API connection and verify query scope and fail-closed validation. They do not constitute a live PostgreSQL integration test. A provisioned database, applied migrations, restricted database role, and approved real or synthetic dataset are still required before this adapter can be used against a live service.
+
+
+## Approved issuer analysis service
+
+`mse_analytics.issuer_service.analyze_published_issuer` composes the approved-view repository with the comparable-period calculation adapter. It loads the requested current period and, only when explicitly requested, a prior period; it then validates issuer, currency, reporting basis and chronology before calculating growth. Without a prior period, growth remains unavailable and is explained in the result.
+
+Market price and annual dividend per share are explicit caller-supplied inputs. This service does not silently retrieve or assume them, because their source, permission and date alignment must be verified independently. It requires published monetary facts to establish reporting currency. Tests use a fake read connection; a live PostgreSQL integration test remains outstanding.
