@@ -17,7 +17,7 @@ Pass a mapping containing any available numeric facts:
 - `market_price`
 - `annual_dividend_per_share`
 
-Missing facts may be omitted or set to `None`. Values must be finite numbers; booleans, NaN and infinity are rejected. Unknown metric keys are rejected to catch mapping errors.
+Missing facts may be omitted or set to `None`. Values must be finite numbers; booleans, NaN and infinity are rejected. Unknown metric keys are rejected to catch mapping errors. Ratios requiring a denominator also require an economically valid positive denominator: positive current liabilities, positive equity, positive weighted-average shares and a positive reference market price.
 
 ## Metric definitions
 
@@ -38,7 +38,7 @@ Growth, margins and yield are decimal ratios (0.10 means 10%). Current ratio, de
 
 ## Missing and invalid data
 
-A missing input or zero denominator yields `None` and a metric-specific explanation in `unavailable_reasons`. Non-positive prior earnings/revenue do not produce conventional growth percentages. Negative EPS is retained as a valid earnings-per-share result, but P/E is withheld. No imputation, annualisation or currency conversion is performed.
+A missing input or invalid denominator yields `None` and a metric-specific explanation in `unavailable_reasons`. Non-positive prior earnings/revenue do not produce conventional growth percentages. Negative EPS is retained as a valid earnings-per-share result, but P/E is withheld. No imputation, annualisation or currency conversion is performed.
 
 ## Comparability requirements before use
 
