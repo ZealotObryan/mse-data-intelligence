@@ -48,3 +48,12 @@ The migration creates public read views as a convenience, not an authorisation g
 ## Current status
 
 This migration has not been applied to a live database. There is no provisioned MSE database, no real issuer dataset has been imported and no provider credentials are configured. The current website remains an illustrative prototype until verified, permissioned data is integrated.
+
+
+## Approved-view read adapter
+
+`mse_analytics.issuer_repository.fetch_published_issuer_period` reads one issuer and reporting period from `public_issuer_financial_facts` only. It never queries the base issuer fact tables or opens a database connection. The caller supplies a read-only connection.
+
+The adapter maps exact metric codes to the financial calculation engine's canonical fact keys, checks reporting metadata consistency, enforces expected units, rejects duplicate mapped facts and mixed monetary currencies, and returns dataset IDs for lineage. Unknown metric codes are listed but not interpreted. It does not convert currencies, infer missing facts, or retrieve price/dividend data.
+
+The tests use a fake DB-API connection and verify query scope and fail-closed validation. They do not constitute a live PostgreSQL integration test. A provisioned database, applied migrations, restricted database role, and approved real or synthetic dataset are still required before this adapter can be used against a live service.
