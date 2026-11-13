@@ -57,7 +57,7 @@ def test_reads_only_approved_public_view_and_maps_known_facts():
     assert result.dataset_ids == ("issuer-demo-v1", "issuer-demo-v2")
     assert result.ignored_metric_codes == ("unknown_disclosure_metric",)
     assert "public_issuer_financial_facts" in connection.fake_cursor.query
-    assert "issuer_financial_facts" not in connection.fake_cursor.query
+    assert "FROM issuer_financial_facts" not in connection.fake_cursor.query
     assert connection.fake_cursor.params == ("issuer-1", "2025-12-31")
 
 
