@@ -6,6 +6,7 @@ calculation engine. It does not read the database or fetch market prices.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from datetime import date
 from typing import Mapping
 
 from .financial_metrics import FinancialMetrics, calculate_financial_metrics
@@ -41,6 +42,10 @@ def _validate_context(context: ReportingContext, label: str) -> None:
             raise ValueError(f"{label}.{field} must be a non-empty string")
     if len(context.currency) != 3 or not context.currency.isalpha() or context.currency.upper() != context.currency:
         raise ValueError(f"{label}.currency must be a three-letter uppercase code")
+    try:
+        date.fromisoformat(context.period_end)
+    except ValueError as exc:
+        raise ValueError(f"{label}.period_end must be an ISO date (YYYY-MM-DD)") from exc
     if context.audited is not None and not isinstance(context.audited, bool):
         raise ValueError(f"{label}.audited must be true, false or None")
 
@@ -73,8 +78,8 @@ def analyze_issuer_period(
             raise ValueError("prior and current periods must use the same currency")
         if prior_context.reporting_basis != context.reporting_basis:
             raise ValueError("prior and current periods must use the same reporting basis")
-        if prior_context.period_end == context.period_end:
-            raise ValueError("prior and current periods must have different period-end dates")
+        if date.fromisoformat(prior_context.period_end) >= date.fromisoformat(context.period_end):
+            raise ValueError("prior period must end before the current period")
         if "prior_revenue" in facts or "prior_net_income" in facts:
             raise ValueError("prior-period values must come from prior_facts, not current_facts")
         if "revenue" in prior_facts:
