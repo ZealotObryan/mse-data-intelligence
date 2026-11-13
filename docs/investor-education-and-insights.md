@@ -177,3 +177,52 @@ The first guided pathway is delivered as nine sequential lessons. Each lesson in
 ### Further curriculum roadmap
 
 After the beginner pathway, develop separate foundation/intermediate modules for reading annual reports in depth, interpreting corporate announcements and corporate actions, valuation methods and their limitations, portfolio construction, risk measurement, and quantitative market analysis. Advanced content should show assumptions, formulas, data requirements and limitations, and should only use real market or issuer information when source permissions and provenance are established.
+
+
+## Three-stage guided curriculum
+
+The Academy now groups its guided content into three learning levels. Each lesson contains a substantive explanation, a fictional worked example, a key takeaway and a multiple-choice knowledge check with feedback. Lesson completion and quiz selections are session-only in the current prototype; they are not stored against user accounts.
+
+### Beginner — MSE 101 (9 lessons)
+
+1. The stock exchange: the big picture
+2. Shares and ownership
+3. Prepare before investing
+4. Orders, trading and settlement
+5. Returns, dividends and costs
+6. Read prices and market information
+7. Understand company reports
+8. Risk, diversification and investor behaviour
+9. A practical investor due-diligence checklist
+
+### Foundation — Company analysis (5 lessons)
+
+1. Read an annual report systematically
+2. Analyse income, margins and earnings quality
+3. Understand balance sheets and cash flow
+4. Use financial ratios with context
+5. Analyse dividends and corporate actions
+
+### Intermediate — Portfolio and market research (6 lessons)
+
+1. Valuation: price, value and assumptions
+2. Portfolio construction and diversification
+3. Measure portfolio performance fairly
+4. Risk measurement: volatility, drawdown and Sharpe ratio
+5. Market data quality in thin markets
+6. Write a defensible research conclusion
+
+### Teaching and assessment rules
+
+- Use plain language, define technical terms and explain why each concept matters.
+- Show calculations step by step using fictional MWK figures. Clearly identify every example as illustrative.
+- Explain correct and incorrect quiz answers; quizzes are for learning, not investment suitability.
+- Distinguish market facts, calculated metrics, interpretation and model estimates.
+- State assumptions, period alignment, data requirements and limitations for valuation and risk measures.
+- Treat MSE procedures, broker requirements, fees, taxes and settlement arrangements as changeable; link to official sources instead of inventing details.
+- Do not imply guaranteed dividends, execution, liquidity, profits or protection from losses.
+- The current progress indicator is session-only. Persistent user progress requires authentication, a learning-record data model and a privacy review before implementation.
+
+### Advanced pathway planned
+
+Future modules may cover time-series analysis, market microstructure, fixed-income securities, quantitative portfolio optimisation, scenario and stress testing, model validation, and research-note construction. These should be released only with transparent methods, permissioned data and appropriate technical review.
