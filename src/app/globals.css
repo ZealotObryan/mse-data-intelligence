@@ -485,3 +485,11 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#28bfc6}
 .shell[data-theme="dark"] .academy-levels button:hover,.shell[data-theme="dark"] .academy-levels button.selected{background:#173c42;border-color:#269c98}
 .shell[data-theme="dark"] .academy-levels button.selected>span{background:#008f83;color:white}
 @media(max-width:600px){.academy-levels{grid-template-columns:1fr}.academy-levels button{padding:11px 13px}}
+
+
+/* Investor Academy pathway outcomes and prerequisites */
+.academy-pathway{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:18px 20px;margin:16px 0 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.academy-pathway>div{display:flex;flex-direction:column;gap:7px;min-width:0}
+.academy-pathway small{font-size:10px;font-weight:800;letter-spacing:.09em;color:var(--muted)}
+.academy-pathway b,.academy-pathway span{font-size:13px;line-height:1.65;color:var(--text)}
+@media(max-width:680px){.academy-pathway{grid-template-columns:1fr;gap:14px;padding:15px}}
