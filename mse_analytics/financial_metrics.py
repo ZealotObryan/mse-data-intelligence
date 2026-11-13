@@ -119,28 +119,38 @@ def calculate_financial_metrics(
     )
     current_ratio = record(
         "current_ratio",
-        _ratio(v["current_assets"], v["current_liabilities"]),
-        "requires current assets and non-zero current liabilities",
+        _ratio(v["current_assets"], v["current_liabilities"])
+        if v["current_liabilities"] is not None and v["current_liabilities"] > 0
+        else None,
+        "requires current assets and positive current liabilities",
     )
     debt_to_equity = record(
         "debt_to_equity",
-        _ratio(v["total_debt"], v["total_equity"]),
-        "requires total debt and non-zero total equity",
+        _ratio(v["total_debt"], v["total_equity"])
+        if v["total_equity"] is not None and v["total_equity"] > 0
+        else None,
+        "requires total debt and positive total equity",
     )
     eps = record(
         "earnings_per_share",
-        _ratio(v["net_income"], v["weighted_average_shares"]),
-        "requires net income and non-zero weighted-average shares",
+        _ratio(v["net_income"], v["weighted_average_shares"])
+        if v["weighted_average_shares"] is not None and v["weighted_average_shares"] > 0
+        else None,
+        "requires net income and positive weighted-average shares",
     )
     pe = record(
         "price_to_earnings",
-        _ratio(v["market_price"], eps if eps is not None and eps > 0 else None),
-        "requires a market price and positive earnings per share",
+        _ratio(v["market_price"], eps)
+        if v["market_price"] is not None and v["market_price"] > 0 and eps is not None and eps > 0
+        else None,
+        "requires a positive market price and positive earnings per share",
     )
     dividend_yield = record(
         "dividend_yield",
-        _ratio(v["annual_dividend_per_share"], v["market_price"]),
-        "requires annual dividend per share and non-zero reference market price",
+        _ratio(v["annual_dividend_per_share"], v["market_price"])
+        if v["market_price"] is not None and v["market_price"] > 0
+        else None,
+        "requires annual dividend per share and a positive reference market price",
     )
 
     return FinancialMetrics(
