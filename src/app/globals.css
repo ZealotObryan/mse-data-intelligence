@@ -493,3 +493,98 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#28bfc6}
 .academy-pathway small{font-size:10px;font-weight:800;letter-spacing:.09em;color:var(--muted)}
 .academy-pathway b,.academy-pathway span{font-size:13px;line-height:1.65;color:var(--text)}
 @media(max-width:680px){.academy-pathway{grid-template-columns:1fr;gap:14px;padding:15px}}
+
+
+/* Investor Academy responsive learning experience */
+.academy-levels{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch}
+.academy-levels button{min-width:0;min-height:76px}
+.academy-levels button>b,.academy-levels button>small{min-width:0;overflow-wrap:anywhere}
+.academy-grid{grid-template-columns:minmax(0,1.5fr) minmax(260px,.85fr);align-items:start}
+.lessons{min-width:0}
+.lesson-toggle{min-height:64px;padding:14px 8px}
+.lesson-toggle>svg{flex:0 0 auto;transition:transform .18s ease}
+.lesson-active>.lesson-toggle>svg{transform:rotate(180deg)}
+.lesson-content{max-width:820px;padding:6px 12px 22px 42px}
+.lesson-section p,.worked-example p,.key-takeaway p{font-size:14px;line-height:1.8}
+.lesson-section h4,.knowledge-check h4{font-size:14px;line-height:1.5}
+.worked-example,.key-takeaway{padding:16px 17px}
+.worked-example small,.knowledge-check>small,.learning-next>small{font-size:10px}
+.quiz-options{gap:9px}
+.quiz-options button{min-height:44px;padding:11px 13px;font-size:13px;line-height:1.55}
+.quiz-feedback{font-size:13px;line-height:1.65;padding:13px 14px}
+.lesson-complete,.lesson-next{min-height:44px;padding:11px 15px;font-size:12px}
+.glossary-item>button{min-height:48px;padding:12px 4px}
+.glossary-item>p{font-size:13px;line-height:1.7}
+.progress-copy small,.progress-foot{font-size:11px;line-height:1.5}
+.learning-guidance ol,.learning-next>p{font-size:13px;line-height:1.75}
+.education-note p{font-size:12px;line-height:1.75}
+.academy-pathway{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.academy-pathway>div{display:grid;align-content:start;gap:7px}
+.academy-pathway small{font-size:10px;letter-spacing:.1em;font-weight:800;color:#347653}
+.academy-pathway b,.academy-pathway span{font-size:13px;line-height:1.7;color:#536b5d}
+.shell[data-theme="dark"] .academy-pathway b,.shell[data-theme="dark"] .academy-pathway span{color:#c0d0c6}
+.shell[data-theme="dark"] .academy-pathway small{color:#79bd8c}
+.shell[data-theme="dark"] .lesson-toggle,.shell[data-theme="dark"] .glossary-item>button{color:#d7e5dc}
+.shell[data-theme="dark"] .lesson{border-color:#294338}
+.shell[data-theme="dark"] .lesson-section p,.shell[data-theme="dark"] .glossary-item>p{color:#b0c2b7}
+.shell[data-theme="dark"] .lesson-section h4,.shell[data-theme="dark"] .knowledge-check h4{color:#e3eee6}
+.shell[data-theme="dark"] .quiz-options button{border-color:#345246}
+.shell[data-theme="dark"] .lesson-complete{background:#18392e;border-color:#2c6848;color:#a8e2c0}
+.shell[data-theme="dark"] .lesson-next{background:#2c6848;border-color:#3c805a;color:#fff}
+.shell[data-theme="dark"] .education-note{background:#292719;border-color:#51482b;color:#d8c58c}
+.shell[data-theme="dark"] .education-note p{color:#d0c49c}
+@media(max-width:1100px){
+ .academy-levels{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .academy-grid{grid-template-columns:1fr}
+ .glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
+ .glossary>.panel-head{grid-column:1/-1}
+}
+@media(max-width:650px){
+ .academy{gap:12px}
+ .academy-intro{gap:13px;padding:18px}
+ .academy-intro h2{font-size:21px;line-height:1.25}
+ .academy-intro p{font-size:13px;line-height:1.7}
+ .academy-levels{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .academy-levels button{grid-template-columns:26px minmax(0,1fr);column-gap:8px;min-height:78px;padding:11px 9px}
+ .academy-levels button>span{width:26px;height:26px}
+ .academy-levels button>b{font-size:12px}
+ .academy-levels button>small{font-size:10px;line-height:1.35}
+ .academy-pathway{grid-template-columns:1fr;gap:13px}
+ .academy-pathway b,.academy-pathway span{font-size:13px}
+ .academy-progress{padding:14px}
+ .progress-copy{gap:8px}
+ .progress-copy>div{min-width:0}
+ .progress-copy b{font-size:13px;line-height:1.4}
+ .progress-copy small{font-size:11px;line-height:1.5}
+ .progress-copy strong{font-size:16px}
+ .progress-foot{font-size:10px;flex-wrap:wrap}
+ .academy-grid{gap:12px}
+ .lessons,.glossary{padding:14px}
+ .lesson-toggle{min-height:68px;padding:12px 2px;gap:9px}
+ .lesson-number{width:32px;height:32px;flex-basis:32px}
+ .lesson-title-wrap b{font-size:13px;line-height:1.4}
+ .lesson-title-wrap small{font-size:10px}
+ .lesson-content{padding:4px 2px 18px}
+ .lesson-section{margin:13px 0}
+ .lesson-section p,.worked-example p,.key-takeaway p{font-size:14px;line-height:1.75}
+ .lesson-section h4,.knowledge-check h4{font-size:14px}
+ .worked-example,.key-takeaway{padding:14px}
+ .quiz-options button{font-size:13px;min-height:48px;padding:12px}
+ .quiz-feedback{font-size:13px}
+ .lesson-actions{display:grid;grid-template-columns:1fr;gap:8px}
+ .lesson-actions button{width:100%;min-height:46px}
+ .glossary{display:block}
+ .glossary-item>button{min-height:48px}
+ .glossary-item b{font-size:13px}
+ .glossary-item>p{font-size:13px;line-height:1.7}
+ .academy-bottom-grid{grid-template-columns:1fr}
+ .learning-guidance,.learning-next{padding:16px}
+ .learning-guidance ol,.learning-next>p{font-size:13px;line-height:1.7}
+ .education-note{padding:14px;gap:9px}
+ .education-note p{font-size:12px;line-height:1.7}
+}
+@media(max-width:360px){
+ .academy-levels{grid-template-columns:1fr}
+ .academy-levels button{min-height:66px}
+ .progress-foot{display:grid}
+}
