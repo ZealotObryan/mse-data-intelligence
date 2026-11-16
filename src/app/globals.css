@@ -588,3 +588,22 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#28bfc6}
  .academy-levels button{min-height:66px}
  .progress-foot{display:grid}
 }
+
+/* Academy home journey and glossary search */
+.academy-home-strip{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 20px}
+.academy-home-strip>div{display:grid;gap:5px;min-width:0}
+.academy-home-strip small{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--muted)}
+.academy-home-strip b{font-size:14px;color:var(--text)}
+.academy-home-strip span{font-size:12px;line-height:1.6;color:var(--muted)}
+.academy-continue{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 15px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font-size:12px;font-weight:750;white-space:nowrap}
+.academy-continue:hover{border-color:var(--accent);color:var(--accent)}
+.glossary-search{display:flex;align-items:center;gap:9px;min-height:42px;padding:0 11px;margin:0 0 9px;border:1px solid var(--line);border-radius:9px;color:var(--muted);background:var(--surface)}
+.glossary-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:12px}
+.glossary-search input::placeholder{color:var(--muted)}
+.shell[data-theme="dark"] .academy-home-strip b{color:#e3eee6}
+.shell[data-theme="dark"] .academy-continue{background:#17251f;border-color:#345246;color:#d7e5dc}
+@media(max-width:650px){
+ .academy-home-strip{align-items:stretch;flex-direction:column;padding:15px;gap:12px}
+ .academy-continue{width:100%;min-height:48px}
+ .glossary-search{min-height:46px}
+}
