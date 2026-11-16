@@ -665,3 +665,18 @@ th{font-size:10px}
 .shell[data-theme="dark"] .academy-font-controls button{background:#20362b;border-color:#456451;color:#d7e5dc}
 .shell[data-theme="dark"] .academy-font-controls button[aria-pressed="true"]{background:#347653;border-color:#4d956b;color:#fff}
 .academy-font-controls button:focus-visible{outline:3px solid #83b99a;outline-offset:2px}
+
+
+/* Learning-platform refinements: explicit outcomes, clear lesson navigation and retryable practice. */
+.lesson-objective{margin:2px 0 18px;padding:14px 16px;border:1px solid #dce8dc;border-left:3px solid #347653;border-radius:9px;background:#f5f8f3}
+.lesson-objective small{display:block;margin-bottom:6px;color:#347653;font-size:10px;font-weight:800;letter-spacing:.09em}
+.lesson-objective p{margin:0;color:#425c4c;font-size:13px;line-height:1.7}
+.lesson-objective b{font-weight:750}
+.lesson-previous{min-height:44px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);font-size:12px;font-weight:700}
+.lesson-previous:hover,.quiz-retry:hover{border-color:var(--accent);color:var(--accent)}
+.quiz-retry{display:inline-flex;align-items:center;min-height:36px;margin-top:9px;padding:7px 11px;border:1px solid #dce8dc;border-radius:7px;background:transparent;color:inherit;font-size:11px;font-weight:750}
+.shell[data-theme="dark"] .lesson-objective{background:#17291f;border-color:#345246;border-left-color:#79bd8c}
+.shell[data-theme="dark"] .lesson-objective small{color:#9bd0a9}
+.shell[data-theme="dark"] .lesson-objective p{color:#d0dfd4}
+.shell[data-theme="dark"] .lesson-previous,.shell[data-theme="dark"] .quiz-retry{background:#17251f;border-color:#345246;color:#d7e5dc}
+@media(max-width:650px){.lesson-objective{padding:13px}.lesson-previous{width:100%}}
