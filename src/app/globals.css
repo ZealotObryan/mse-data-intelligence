@@ -658,3 +658,10 @@ th{font-size:10px}
  .academy-font-controls span{margin-right:auto}
  .academy-intro>div:first-child{flex-basis:100%}
 }
+
+
+/* Keep Academy text controls legible in both workspace themes. */
+.shell[data-theme="dark"] .academy-font-controls{background:#17251f;border-color:#345246;color:#c0d0c6}
+.shell[data-theme="dark"] .academy-font-controls button{background:#20362b;border-color:#456451;color:#d7e5dc}
+.shell[data-theme="dark"] .academy-font-controls button[aria-pressed="true"]{background:#347653;border-color:#4d956b;color:#fff}
+.academy-font-controls button:focus-visible{outline:3px solid #83b99a;outline-offset:2px}
