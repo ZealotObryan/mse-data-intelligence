@@ -607,3 +607,54 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline-color:#28bfc6}
  .academy-continue{width:100%;min-height:48px}
  .glossary-search{min-height:46px}
 }
+
+
+/* Global readability pass: raise the default text floor across the workspace. */
+body{font-size:14px}
+.sidebar label,.brand small,.head-right,.heading small,.notice span,.notice a,.row-head small,.metric-foot small,.caption,th,footer,.status small,.analyst small{font-size:11px}
+.nav-item{font-size:13px}
+.market strong,.panel-head b,.row-head b{font-size:13px}
+.market small,.panel-head small,.heading p,.metric-top,.text-btn,.insight p,.risk-card p,.method-grid p,.legal p,.company span small,.pill,.explorer-summary,.sector-select,.security-detail span,.academy-intro p,.lesson-toggle small,.lesson>p,.glossary-item>p,.education-note p{font-size:12px}
+td{font-size:12px}
+th{font-size:10px}
+
+/* Academy text controls and readable lesson typography. */
+.academy-font-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 10px;border:1px solid #dce8dc;border-radius:10px;background:#fff;color:#496454}
+.academy-font-controls span{font-size:12px;font-weight:700;margin-right:3px}
+.academy-font-controls button{min-width:36px;min-height:36px;padding:6px 9px;border:1px solid #dce8dc;border-radius:7px;background:#f5f8f3;color:#245b43;font-size:14px;font-weight:800}
+.academy-font-controls button[aria-pressed="true"]{background:#245b43;color:#fff;border-color:#245b43}
+.academy-font-controls button:disabled{opacity:.42;cursor:not-allowed}
+.academy[data-font-scale="110"] .academy-intro p,
+.academy[data-font-scale="110"] .academy-home-strip span,
+.academy[data-font-scale="110"] .academy-pathway span,
+.academy[data-font-scale="110"] .lesson-content p,
+.academy[data-font-scale="110"] .lesson-content h4,
+.academy[data-font-scale="110"] .quiz-options button,
+.academy[data-font-scale="110"] .quiz-feedback span,
+.academy[data-font-scale="110"] .lesson-toggle b,
+.academy[data-font-scale="110"] .lesson-toggle small,
+.academy[data-font-scale="110"] .glossary-item b,
+.academy[data-font-scale="110"] .glossary-item p,
+.academy[data-font-scale="110"] .academy-bottom-grid,
+.academy[data-font-scale="110"] .education-note p{font-size:1.1em}
+.academy[data-font-scale="120"] .academy-intro p,
+.academy[data-font-scale="120"] .academy-home-strip span,
+.academy[data-font-scale="120"] .academy-pathway span,
+.academy[data-font-scale="120"] .lesson-content p,
+.academy[data-font-scale="120"] .lesson-content h4,
+.academy[data-font-scale="120"] .quiz-options button,
+.academy[data-font-scale="120"] .quiz-feedback span,
+.academy[data-font-scale="120"] .lesson-toggle b,
+.academy[data-font-scale="120"] .lesson-toggle small,
+.academy[data-font-scale="120"] .glossary-item b,
+.academy[data-font-scale="120"] .glossary-item p,
+.academy[data-font-scale="120"] .academy-bottom-grid,
+.academy[data-font-scale="120"] .education-note p{font-size:1.2em}
+.academy-font-controls{order:3}
+.academy-intro{flex-wrap:wrap}
+.academy-intro>div:first-child{flex:1 1 480px}
+@media(max-width:650px){
+ .academy-font-controls{width:100%;justify-content:flex-end;order:3}
+ .academy-font-controls span{margin-right:auto}
+ .academy-intro>div:first-child{flex-basis:100%}
+}
