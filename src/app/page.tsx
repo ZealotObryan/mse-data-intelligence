@@ -1,5 +1,5 @@
 "use client";
-import {useMemo,useState,useSyncExternalStore} from "react";
+import {useEffect,useMemo,useState,useSyncExternalStore} from "react";
 import {Activity,ArrowUpRight,ArrowDownRight,BarChart3,Bell,BookOpen,Building2,ChevronDown,FileText,Gauge,Layers3,Menu,Search,ShieldCheck,Sparkles,TrendingUp,Wallet,X,Moon,Sun} from "lucide-react";
 import {Area,AreaChart,Bar,BarChart,CartesianGrid,Cell,ResponsiveContainer,Tooltip,XAxis,YAxis} from "recharts";
 type Tab="Overview"|"Equities"|"Company research"|"Risk analytics"|"Forecast lab"|"Investor Academy"|"Methodology";
