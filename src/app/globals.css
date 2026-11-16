@@ -788,3 +788,20 @@ th{font-size:10px}
  .focus-lesson .lesson-section p,.focus-lesson .worked-example p,.focus-lesson .key-takeaway p{font-size:14px}
  .focus-actions button{width:100%}
 }
+
+/* Visual explanations and Malawi-context examples in the Academy reader */
+.lesson-visual{display:grid;gap:14px;margin:22px 0;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.lesson-visual-heading{display:grid;gap:5px}
+.lesson-visual-heading>span,.lesson-real-world>small{font-size:10px;font-weight:850;letter-spacing:.11em;color:var(--accent)}
+.lesson-visual-heading>b{font-size:16px;line-height:1.4;color:var(--text)}
+.lesson-flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px}
+.lesson-flow-node{display:grid;align-content:start;gap:9px;min-height:112px;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel,rgba(100,130,110,.07))}
+.lesson-flow-node>span{display:grid;place-items:center;width:25px;height:25px;border-radius:8px;background:var(--accent);color:#fff;font-size:10px;font-weight:850}
+.lesson-flow-node>b{font-size:12px;line-height:1.55;color:var(--text)}
+.lesson-flow-arrow{font-size:19px;font-weight:800;color:var(--accent)}
+.lesson-real-world{padding:14px 15px;border-radius:11px;background:rgba(55,125,83,.08);border-left:3px solid var(--accent)}
+.lesson-real-world p{margin:7px 0 0;font-size:13px;line-height:1.75;color:var(--text)}
+.shell[data-theme="dark"] .lesson-visual{background:#17251f;border-color:#345246}
+.shell[data-theme="dark"] .lesson-flow-node{background:#1d3027;border-color:#345246}
+.shell[data-theme="dark"] .lesson-real-world{background:#1d3529}
+@media(max-width:620px){.lesson-visual{padding:14px;margin:17px 0}.lesson-flow{grid-template-columns:1fr;gap:6px}.lesson-flow-node{min-height:0;grid-template-columns:27px 1fr;align-items:center;padding:10px 12px}.lesson-flow-node>span{grid-row:1}.lesson-flow-arrow{transform:rotate(90deg);justify-self:center;font-size:16px;line-height:1}.lesson-visual-heading>b{font-size:15px}.lesson-real-world p{font-size:13px}}
