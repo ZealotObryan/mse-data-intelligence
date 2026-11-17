@@ -1,10 +1,13 @@
 .page{--surface:#fff;--panel:#f5f7f3;--text:#172b20;--muted:#64746a;--line:#dfe7df;--accent:#2d7650;min-height:100vh;padding:26px clamp(16px,5vw,72px) 56px;background:#f4f6f1;color:var(--text);font-family:DM Sans,sans-serif}
 .top{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1120px;margin:0 auto 42px;color:#6b7b70;font-size:10px;font-weight:800;letter-spacing:.12em}
 .back{color:#285f41;text-decoration:none;font-size:12px;letter-spacing:0}.back:hover{text-decoration:underline}
-.hero{max-width:1120px;margin:0 auto 28px;padding:34px;border-radius:20px;background:#163d2a;color:#fff}
+.hero{max-width:1120px;margin:0 auto 20px;padding:34px;border-radius:20px;background:#163d2a;color:#fff}
 .kicker{color:#b9d5bf;font-size:10px;font-weight:850;letter-spacing:.15em}
 .hero h1{margin:10px 0;font:850 clamp(32px,5vw,48px)/1.1 Manrope,sans-serif}.hero p{max-width:650px;margin:0;color:#d6e4d9;font-size:15px;line-height:1.8}
 .disclosure{display:inline-flex;margin-top:20px;padding:8px 11px;border:1px solid #63836c;border-radius:999px;color:#e0eee2;font-size:10px;font-weight:700}
-.tools{display:grid;grid-template-columns:1fr;gap:18px;max-width:1120px;margin:0 auto}
+.toolsNav{position:sticky;top:10px;z-index:5;display:flex;gap:8px;max-width:1120px;margin:0 auto 18px;padding:9px;overflow-x:auto;border:1px solid #e0e8df;border-radius:12px;background:#ffffffed;backdrop-filter:blur(12px)}
+.toolsNav a{flex:0 0 auto;padding:9px 12px;border-radius:8px;background:#f2f6f0;color:#315e40;text-decoration:none;font-size:10px;font-weight:800;white-space:nowrap}.toolsNav a:hover,.toolsNav a:focus-visible{background:#e3eee2;outline:2px solid #7aa386;outline-offset:2px}
+.tools{display:grid;grid-template-columns:1fr;gap:22px;max-width:1120px;margin:0 auto}
+.toolGroup{display:grid;gap:18px;scroll-margin-top:92px}
 .footer{max-width:1120px;margin:24px auto 0;color:#68786d;font-size:11px;line-height:1.7}
-@media(max-width:600px){.page{padding:17px 12px 36px}.top{align-items:flex-start;flex-direction:column;margin-bottom:26px}.hero{padding:24px 19px}.disclosure{border-radius:10px;line-height:1.5}}
+@media(max-width:600px){.page{padding:17px 12px 36px}.top{align-items:flex-start;flex-direction:column;margin-bottom:26px}.hero{padding:24px 19px}.disclosure{border-radius:10px;line-height:1.5}.toolsNav{top:6px;margin-bottom:14px;padding:7px}.toolsNav a{padding:9px 10px}}
