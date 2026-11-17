@@ -11,7 +11,7 @@ export default function FinancialRatioPlayground() {
   const [facts,setFacts] = useState(defaults);
   const metrics = useMemo(() => {
     const n = Object.fromEntries(Object.entries(facts).map(([k,v])=>[k,Number(v)])) as Record<string,number>;
-    const finite = Object.values(n).every(Number.isFinite);
+    const finite = Object.values(n).every(Number.isFinite) && Object.values(facts).every(value => value.trim() !== "");
     return {
       finite,
       netMargin: finite && n.revenue !== 0 ? n.netIncome/n.revenue : null,
