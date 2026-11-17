@@ -1,6 +1,8 @@
 import Link from "next/link";
 import InvestmentReturnSimulator from "@/components/academy/InvestmentReturnSimulator";
 import DividendCalculator from "@/components/academy/DividendCalculator";
+import OrderBookSimulator from "@/components/academy/OrderBookSimulator";
+import MarketFlowExplorer from "@/components/academy/MarketFlowExplorer";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -24,6 +26,8 @@ export default function AcademyPracticePage() {
       <div className={styles.tools}>
         <InvestmentReturnSimulator />
         <DividendCalculator />
+        <OrderBookSimulator />
+        <MarketFlowExplorer />
       </div>
       <footer className={styles.footer}>All values are hypothetical. These tools are for financial education, not investment advice. Actual investment outcomes may differ and may include fees, taxes and other costs.</footer>
     </main>
