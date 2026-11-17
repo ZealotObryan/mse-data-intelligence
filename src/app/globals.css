@@ -819,3 +819,109 @@ th{font-size:10px}
 .shell[data-theme="dark"] .academy-practice-entry b{color:#e4f0e7}
 .shell[data-theme="dark"] .academy-practice-entry span{color:#a9bdb0}
 @media(max-width:620px){.academy-practice-entry{align-items:stretch;flex-direction:column;padding:16px}.academy-practice-entry>a{width:100%}}
+
+
+/* Overview dashboard: explain the demo before asking users to interpret it. */
+.overview-orientation{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);
+  gap:18px;padding:22px;margin:0 0 22px;border:1px solid #dce8dc;
+  border-radius:16px;background:linear-gradient(125deg,#fff 0%,#f1f7f0 100%)
+}
+.overview-orientation-main{min-width:0}
+.overview-eyebrow{display:inline-flex;align-items:center;gap:7px;color:#287b50;font-size:9px;font-weight:800;letter-spacing:.12em}
+.overview-orientation h2{font:800 clamp(20px,2.2vw,27px) Manrope;letter-spacing:-.045em;line-height:1.15;color:#17372c;margin:12px 0 8px}
+.overview-orientation-main>p{max-width:700px;color:#718277;font-size:12px;line-height:1.75;margin:0}
+.overview-orientation-side{display:grid;gap:10px;align-content:center}
+.overview-orientation-side>div{display:grid;gap:4px;padding:11px 13px;border:1px solid #e0e9df;border-radius:10px;background:#ffffffb8}
+.overview-orientation-side b{font-size:11px;color:#294638}
+.overview-orientation-side span{font-size:10px;line-height:1.6;color:#718277}
+.overview-quick-actions{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-top:4px}
+.overview-quick-actions button{display:flex;align-items:center;gap:10px;min-width:0;text-align:left;padding:12px;border:1px solid #dce8dc;border-radius:10px;background:#fff;color:#287b50;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.overview-quick-actions button:hover{transform:translateY(-2px);border-color:#9bbda4;box-shadow:0 5px 15px #17372c0c}
+.overview-quick-actions button>span{display:grid;gap:3px;flex:1;min-width:0}
+.overview-quick-actions b{font-size:11px;color:#294638}
+.overview-quick-actions small{font-size:9px;color:#718277;line-height:1.4}
+.shell[data-theme="dark"] .overview-orientation{background:linear-gradient(125deg,#10283b,#15352f);border-color:#315344}
+.shell[data-theme="dark"] .overview-eyebrow{color:#80c99a}
+.shell[data-theme="dark"] .overview-orientation h2{color:#e3eef7}
+.shell[data-theme="dark"] .overview-orientation-main>p,.shell[data-theme="dark"] .overview-orientation-side span{color:#a9bdb0}
+.shell[data-theme="dark"] .overview-orientation-side>div,.shell[data-theme="dark"] .overview-quick-actions button{background:#153247;border-color:#315344}
+.shell[data-theme="dark"] .overview-orientation-side b,.shell[data-theme="dark"] .overview-quick-actions b{color:#e3eef7}
+.shell[data-theme="dark"] .overview-quick-actions small{color:#a9bdb0}
+@media(max-width:760px){
+ .overview-orientation{grid-template-columns:1fr;padding:17px;gap:14px}
+ .overview-quick-actions{grid-template-columns:1fr}
+ .overview-quick-actions button{min-height:56px}
+}
+
+
+/* Equities explorer: discovery hierarchy, filter states and transparent sample context. */
+.equities-workspace{display:grid;gap:16px}
+.equities-intro{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:23px 25px;border:1px solid #dce8dc;border-radius:15px;background:linear-gradient(125deg,#fff,#f0f6ef)}
+.equities-intro>div:first-child{max-width:720px}
+.equities-intro>div>small{font-size:9px;letter-spacing:.13em;font-weight:800;color:#287b50}
+.equities-intro h2{font:800 clamp(21px,2.3vw,28px) Manrope;letter-spacing:-.045em;color:#17372c;margin:9px 0 6px}
+.equities-intro p{font-size:12px;line-height:1.7;color:#718277;margin:0}
+.equities-intro-stat{flex:0 0 130px;display:grid;justify-items:center;gap:3px;padding:15px;border:1px solid #dce8dc;background:#ffffffa8;border-radius:12px}
+.equities-intro-stat b{font:800 30px Manrope;color:#287b50;letter-spacing:-.05em}
+.equities-intro-stat span{font-size:11px;font-weight:700;color:#294638}
+.equities-intro-stat small{font-size:8px;letter-spacing:.1em;color:#718277}
+.equities-integrity{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid #dce8dc;border-radius:10px;background:#f2f7f1;color:#287b50}
+.equities-integrity svg{flex:0 0 auto;margin-top:1px}
+.equities-integrity span{font-size:11px;line-height:1.6;color:#617568}
+.equities-integrity b{color:#294638}
+.equity-filter-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:17px 0 12px}
+.equity-performance{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+.equity-performance>span{font-size:10px;font-weight:700;color:#718277;margin-right:3px}
+.equity-performance button{border:1px solid #e0e8df;border-radius:8px;background:#fff;padding:7px 10px;color:#64766a;font-size:10px;font-weight:650;cursor:pointer}
+.equity-performance button.active{background:#eaf4eb;border-color:#a9c9ae;color:#287b50}
+.equity-sort-hint{display:flex;align-items:center;gap:6px;color:#87958a;font-size:9px}
+.explorer-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 9px}
+.explorer-summary>span{font-size:11px;color:#66786b}
+.explorer-summary>span>b{font-size:13px;color:#294638}
+.explorer-summary>span>small{font-size:9px;color:#89978c}
+.active-filter-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.active-filter-chips:empty{display:none}
+.active-filter-chips button{display:inline-flex;align-items:center;gap:7px;border:1px solid #dce8dc;border-radius:999px;padding:5px 9px;background:#f5f8f4;color:#526a59;font-size:9px;cursor:pointer}
+.active-filter-chips button b{font-size:13px;color:#287b50}
+.equities-footnote{display:flex;align-items:flex-start;gap:8px;color:#849187;font-size:10px;line-height:1.6;padding:0 2px}
+.equities-footnote svg{flex:0 0 auto;margin-top:1px}
+.explorer-controls .search input{min-width:180px}
+.sort-button{white-space:nowrap}
+.security-detail{margin-top:14px}
+.shell[data-theme="dark"] .equities-intro{background:linear-gradient(125deg,#10283b,#15352f);border-color:#315344}
+.shell[data-theme="dark"] .equities-intro h2{color:#e3eef7}
+.shell[data-theme="dark"] .equities-intro p,.shell[data-theme="dark"] .equities-intro-stat small{color:#a9bdb0}
+.shell[data-theme="dark"] .equities-intro-stat{background:#153247;border-color:#315344}
+.shell[data-theme="dark"] .equities-intro-stat b{color:#80c99a}
+.shell[data-theme="dark"] .equities-intro-stat span,.shell[data-theme="dark"] .equities-integrity b{color:#e3eef7}
+.shell[data-theme="dark"] .equities-integrity{background:#173c2e;border-color:#315344}
+.shell[data-theme="dark"] .equities-integrity span{color:#b6c9bc}
+.shell[data-theme="dark"] .equity-performance>span,.shell[data-theme="dark"] .equity-sort-hint{color:#9aafc2}
+.shell[data-theme="dark"] .equity-performance button{background:#153247;border-color:#315344;color:#b6c9bc}
+.shell[data-theme="dark"] .equity-performance button.active{background:#1d4534;border-color:#4c8964;color:#9be0b1}
+.shell[data-theme="dark"] .explorer-summary>span{color:#a9bdb0}
+.shell[data-theme="dark"] .explorer-summary>span>b{color:#e3eef7}
+.shell[data-theme="dark"] .active-filter-chips button{background:#173c2e;border-color:#315344;color:#c4d8c9}
+@media(max-width:760px){
+ .equities-intro{align-items:flex-start;padding:18px;gap:12px}
+ .equities-intro-stat{flex-basis:95px;padding:11px 7px}
+ .equities-intro-stat b{font-size:24px}
+ .equity-filter-row{align-items:flex-start;flex-direction:column}
+ .explorer-summary{align-items:flex-start}
+ .explorer-summary>span>small{display:block;margin-top:3px}
+ .explorer-controls{width:100%}
+ .explorer-controls .search{flex:1;min-width:0}
+ .explorer-controls .search input{min-width:0;width:100%}
+}
+@media(max-width:480px){
+ .equities-intro{flex-direction:column}
+ .equities-intro-stat{display:flex;align-items:baseline;gap:7px;width:100%;justify-content:flex-start}
+ .equities-intro-stat b{font-size:21px}
+ .equities-intro-stat small{margin-left:auto}
+ .equity-performance{gap:5px}
+ .equity-performance>span{width:100%;margin-bottom:2px}
+ .equity-performance button{padding:7px 9px}
+ .explorer-summary{gap:8px}
+ .explorer-summary .text-btn{font-size:9px}
+}
