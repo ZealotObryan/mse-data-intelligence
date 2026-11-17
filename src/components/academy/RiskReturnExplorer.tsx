@@ -11,7 +11,7 @@ export default function RiskReturnExplorer() {
   const [annualVolatility, setAnnualVolatility] = useState("15");
   const [years, setYears] = useState("3");
   const values = [capital, annualReturn, annualVolatility, years].map(Number);
-  const valid = values.every(Number.isFinite) && Number(capital) > 0 && Number(annualReturn) > -100 && Number(annualVolatility) >= 0 && Number(annualVolatility) <= 100 && Number(years) > 0 && Number(years) <= 30;
+  const valid = values.every(Number.isFinite) && Number(capital) > 0 && Number(annualReturn) > -100 && Number(annualVolatility) >= 0 && Number(annualVolatility) <= 100 && Number(annualReturn) <= 100 && Number(years) > 0 && Number(years) <= 30;
   const result = useMemo(() => {
     if (!valid) return null;
     const principal = Number(capital);
@@ -19,11 +19,11 @@ export default function RiskReturnExplorer() {
     const v = Number(annualVolatility) / 100;
     const period = Number(years);
     const central = principal * Math.pow(1 + r, period);
-    const range = v * Math.sqrt(period);
+    const rangeMultiplier = Math.exp(v * Math.sqrt(period));
     return {
       central,
-      lower: principal * Math.pow(Math.max(0.01, 1 + r - range), period),
-      upper: principal * Math.pow(1 + r + range, period),
+      lower: central / rangeMultiplier,
+      upper: central * rangeMultiplier,
       gain: central - principal
     };
   }, [capital, annualReturn, annualVolatility, years, valid]);
@@ -47,7 +47,7 @@ export default function RiskReturnExplorer() {
             <div className={styles.metrics}><div><small>Illustrative gain / loss</small><b>{money(result.gain)}</b></div><div><small>Starting capital</small><b>{money(Number(capital))}</b></div></div>
             <div className={styles.range}><div><span>Lower scenario</span><b>{money(result.lower)}</b></div><div className={styles.rangeTrack}><i style={{left:"0%",width:"100%"}} /></div><div><span>Upper scenario</span><b>{money(result.upper)}</b></div></div>
             <p className={styles.explain}>The scenario range uses a simplified volatility adjustment that grows with the square root of time. It is not a confidence interval, forecast, probability estimate or maximum-loss calculation.</p>
-          </> : <p className={styles.warning}>Enter a positive starting amount, a return above -100%, volatility from 0–100%, and a horizon up to 30 years.</p>}
+          </> : <p className={styles.warning}>Enter a positive starting amount, a return from -99% to 100%, volatility from 0–100%, and a horizon up to 30 years.</p>}
         </div>
       </div>
       <p className={styles.disclosure}>Educational illustration only. Returns are assumed to compound annually; volatility is a user-entered assumption, not measured MSE volatility. Actual returns can be negative, irregular and materially different. Fees, taxes, inflation and liquidity are excluded.</p>
