@@ -51,7 +51,7 @@ EXECUTE FUNCTION enforce_dataset_publication_gate();
 
 -- Public consumers receive only observations belonging to approved datasets.
 -- Raw tables remain private; apply database role grants and RLS separately.
-CREATE OR REPLACE VIEW public_market_observations AS
+CREATE OR REPLACE VIEW public_market_observations WITH (security_invoker = true) AS
 SELECT
     o.observation_id,
     o.instrument_id,
