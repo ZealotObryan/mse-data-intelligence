@@ -6,6 +6,7 @@ import MarketFlowExplorer from "@/components/academy/MarketFlowExplorer";
 import PortfolioBuilder from "@/components/academy/PortfolioBuilder";
 import RiskReturnExplorer from "@/components/academy/RiskReturnExplorer";
 import FinancialRatioPlayground from "@/components/academy/FinancialRatioPlayground";
+import FinancialStatementExplorer from "@/components/academy/FinancialStatementExplorer";
 import InvestorAssessment from "@/components/academy/InvestorAssessment";
 import styles from "./page.module.css";
 
@@ -45,6 +46,7 @@ export default function AcademyPracticePage() {
           <RiskReturnExplorer />
         </section>
         <section id="financial-analysis" aria-label="Financial analysis tools" className={styles.toolGroup}>
+          <FinancialStatementExplorer />
           <FinancialRatioPlayground />
         </section>
         <section id="knowledge-check" aria-label="Investor knowledge assessment" className={styles.toolGroup}>
