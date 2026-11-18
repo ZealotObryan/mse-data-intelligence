@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS issuer_financial_periods (
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     CHECK (period_start IS NULL OR period_start <= period_end),
     CHECK (fiscal_year IS NULL OR fiscal_year BETWEEN 1900 AND 2200),
-    UNIQUE (issuer_id, dataset_id, statement_type, period_end, fiscal_period)
+    UNIQUE NULLS NOT DISTINCT (issuer_id, dataset_id, statement_type, period_end, fiscal_period)
 );
 CREATE INDEX IF NOT EXISTS issuer_financial_periods_lookup_idx
     ON issuer_financial_periods(issuer_id, period_end DESC);
@@ -194,6 +194,6 @@ WHERE d.publication_status = 'approved_public'
 
 COMMIT;
 
--- Before granting SELECT on public views, harden view ownership and RLS.
--- On PostgreSQL 15+, consider WITH (security_invoker = true); otherwise keep
--- views in a private schema or revoke anon/authenticated access.
+-- All public issuer views use PostgreSQL 15+ security-invoker semantics.
+-- Before granting SELECT, verify underlying table grants and RLS for the
+-- invoking role. Keep the views private until that review is complete.
