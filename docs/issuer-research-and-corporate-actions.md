@@ -64,3 +64,10 @@ The tests use a fake DB-API connection and verify query scope and fail-closed va
 `mse_analytics.issuer_service.analyze_published_issuer` composes the approved-view repository with the comparable-period calculation adapter. It loads the requested current period and, only when explicitly requested, a prior period; it then validates issuer, currency, reporting basis and chronology before calculating growth. Without a prior period, growth remains unavailable and is explained in the result.
 
 Market price and annual dividend per share are explicit caller-supplied inputs. This service does not silently retrieve or assume them, because their source, permission and date alignment must be verified independently. It requires published monetary facts to establish reporting currency. Tests use a fake read connection; a live PostgreSQL integration test remains outstanding.
+
+
+## Parallel implementation sprint — issuer research workspace
+
+The dashboard's Company research tab has been upgraded from a generic placeholder to an evidence-first activation workspace. It now communicates the four research modules and the four explicit activation gates: source permission, PostgreSQL/migrations and restricted roles, verified ingestion with original-file checksums and lineage, and publication review. It intentionally shows no issuer-level metrics or fictional company profiles.
+
+**Still blocked:** production PostgreSQL provisioning, applying migrations 001–003, authorised source/licence confirmation, ingestion of verified issuer datasets, and approval for public display. The UI is a readiness surface, not a claim that company data is connected.
