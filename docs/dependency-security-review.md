@@ -1,25 +1,44 @@
 # Dependency security review
 
-## Finding
+## Current audit snapshot
 
-The Vercel production build for the forest-green UI deployment completed successfully but printed an npm audit summary of **8 moderate severity vulnerabilities** during `npm ci`.
+An isolated audit of the repository lockfile on 18 November 2026 found **14 high-severity development-dependency findings**, with **0 moderate and 0 critical findings** in that audit result. A separate production-only audit (`npm audit --omit=dev`) returned **0 vulnerabilities** across the production dependency graph.
 
-## What is known
+The audit result is a point-in-time snapshot. It should be rerun against the exact lockfile used for each release.
 
-- The build log did not include the advisory IDs, affected dependency paths, patched versions or whether the findings are direct or transitive dependencies.
-- The current manifest pins Next.js and eslint-config-next to 16.4.6 and React/React DOM to 19.3.0, with several other packages using semver ranges.
-- A production build succeeding does not mean the dependency tree is free of known vulnerabilities.
+## Affected dependency paths
 
-## Remediation decision
+The remaining high-severity findings are concentrated in the development/lint toolchain, including:
 
-No blind `npm audit fix --force` or major-version upgrade has been applied. That could introduce breaking changes in Next.js, React, Tailwind or the charting stack without knowing which package paths are affected.
+- `eslint-config-next` and `@next/eslint-plugin-next`
+- `typescript-eslint` and its parser, plugin, type-utils, utils and typescript-estree packages
+- Transitive glob/matching packages including `fast-glob`, `fdir`, `micromatch`, `picomatch` and `tinyglobby`
+- `eslint-import-resolver-typescript`
 
-## Next safe review
+The audit specifically reports a high-severity `picomatch` ReDoS advisory (GHSA-fc5q-39xc-vjpf) in the development dependency tree. The affected paths are used by lint/build tooling; the production-only audit did not report vulnerable production dependencies.
 
-1. Run `npm audit --json` against the exact lockfile and retain the full report as a CI artifact.
-2. Classify each advisory by package path, severity, exploitability and whether it is in the production dependency graph.
-3. Apply non-breaking patched versions and regenerate `package-lock.json`.
-4. Run lint, TypeScript/production build and the Python test suite.
-5. Recheck the audit report and deploy only after reviewing the resulting diff.
+## Remediation attempted
 
-**Status:** open; exact advisory details still need to be retrieved.
+A standard, non-force `npm audit fix` was tested in an isolated sandbox. It updated compatible development transitive dependencies and the local lockfile, but the subsequent audit still reported 14 high-severity findings.
+
+npm's suggested force remediation would downgrade `eslint-config-next` to 14.2.35, a breaking framework/tooling change relative to this project's Next.js 16.4.6 setup. That force fix was deliberately not applied.
+
+No lockfile changes from the isolated experiment were committed or deployed.
+
+## Validation and release implications
+
+- The current PR #13 branch passed GitHub Actions Python analytics tests, ESLint, and a Next.js production build.
+- A local isolated lint and production build also passed after the non-force audit fix.
+- The isolated sandbox did not have the Python test dependency installed, so Python tests were not re-run there.
+- Production dependencies currently audit clean, but the development-toolchain findings remain open and should be tracked.
+
+## Next safe steps
+
+1. Review the exact advisories and patched release compatibility for the Next.js 16 ESLint toolchain.
+2. Prefer a compatible patched ESLint/plugin dependency path or a deliberate lint-toolchain migration over a blind force downgrade.
+3. Regenerate the lockfile on a dedicated branch and inspect the dependency diff.
+4. Run CI, lint, TypeScript/production build and Python tests.
+5. Re-run both full and production-only audits against the committed lockfile.
+6. Keep the findings open until the full audit is clean or the remaining risk is explicitly accepted and documented.
+
+**Status:** partially investigated; production dependency graph clean in the latest audit, development dependency remediation still open.
