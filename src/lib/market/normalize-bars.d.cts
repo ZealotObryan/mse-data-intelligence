@@ -1,0 +1,3 @@
+export type NormalizedDailyBar={date:string;open:string;high:string;low:string;close:string;volume:string|null;sourceRecordId:string|null};
+export function validDate(value:unknown):boolean;
+export function normalizeDailyBars(records:Array<{date:string;open:string|number;high:string|number;low:string|number;close:string|number;volume?:string|number|null;sourceRecordId?:string|null}>,options?:{expectedSessions?:string[]}):{bars:NormalizedDailyBar[];rejected:Array<{index:number;reason:string}>;duplicates:number;missingSessions:string[]|null};
