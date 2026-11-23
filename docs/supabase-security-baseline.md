@@ -1,79 +1,69 @@
 # Supabase security baseline
 
-## Provisioned project
+## Provisioned backend
 
-- Project: MSE Data Intelligence
-- Project ref: `olftvtqbzbheolywnqiz`
-- Region: `eu-west-1`
-- PostgreSQL: 17
-- Initial quoted project cost: $0/month
-- Status at provisioning: `ACTIVE_HEALTHY`
+- MSE Data Intelligence Supabase project: `olftvtqbzbheolywnqiz`
+- PostgreSQL 17, region `eu-west-1`
+- Project was provisioned on the zero-monthly-cost plan at setup.
+- Migrations 001–006 are applied to this project.
+- No market or issuer records were imported.
 
-## Applied schema migrations
+## Role and scope model
 
-Migrations 001–003 create the data-source, dataset, ingestion, instrument,
-market-observation, validation, issuer, financial-statement, dividend,
-corporate-action and announcement foundations. No MSE market or issuer data
-was seeded.
+| Principal | Read | Create | Update | Delete |
+|---|---|---|---|---|
+| Anonymous visitor | None | None | None | None |
+| Authenticated learner | Own role/scope records only; learner progress schema is not yet implemented | None | None | None |
+| Analyst | Assigned dataset and related evidence | None through browser | None through browser | None |
+| Data steward | Assigned stewardship datasets, source metadata and validation issues | None through browser | None through browser | None |
+| Publisher/compliance | Assigned publication datasets and evidence | None through browser | None through browser | None |
+| Platform administrator | Assigned/administrative data via trusted backend workflow | None through browser | None through browser | None |
+| Ingestion worker | Server-side ingestion workflow only | Server-side only | Server-side only | None |
 
-Migration 004 establishes a deliberate default-deny state:
+The browser is intentionally read-only. Write operations, role assignment, dataset-scope grants,
+ingestion and publication approvals must be implemented as authenticated server-side workflows
+with explicit validation and audit events. No browser user can grant themselves a role or dataset
+scope. No learner-progress tables have been created yet.
 
-- RLS enabled on all 13 application tables in `public`.
-- No policies yet; absence of policies means ordinary roles cannot access rows.
-- `anon` and `authenticated` have no table or publication-view privileges.
-- The four publication views are not exposed to browser roles.
-- The market publication view uses `security_invoker = true`.
-- The publication trigger function is not executable as a client RPC.
-- Default privileges keep future tables and functions unexposed for the migration owner.
+## Applied database controls
 
-## Role model and CRUD intent
+- RLS is enabled on all 16 application tables in the `public` schema.
+- Anonymous role has no SELECT on raw tables or publication views.
+- Authenticated role has scoped SELECT privileges on application tables, constrained by RLS.
+- Authenticated users can read only their own role and dataset assignment records.
+- Dataset visibility is controlled by trusted `app_user_roles` and `dataset_access` rows.
+- Analysts need a `read` assignment; data stewards need `steward` or `publish`; publishers need `publish`.
+- Platform administrators can read the application dataset scope but cannot mutate assignments from the browser.
+- Audit events are append-only from the application perspective; browser clients have no write grants.
+- Role/scope helper functions are in the unexposed `private` schema, return booleans only, use pinned search paths, and are not exposed as public RPC functions.
+- The market publication view uses `security_invoker=true`; all public publication views remain ungranted until the public data contract is approved.
+- The dataset publication trigger rejects datasets with failed validation or missing source permission and public-display rights.
 
-| Principal | Intended read | Intended create | Intended update | Intended delete |
-| --- | --- | --- | --- | --- |
-| Anonymous visitor | Approved publication views only | None | None | None |
-| Authenticated learner | Own learning progress; approved views | Own progress | Own progress | Own progress |
-| Analyst | Assigned internal research and approved views | Analysis artefacts only (future) | Own analysis artefacts (future) | Own analysis artefacts (future) |
-| Data steward | Source, dataset and validation scope | Source evidence and ingestion metadata | Staging/validation fields | No evidence deletion |
-| Publisher/compliance | Evidence and publication scope | Approval/audit events | Permission/publication decisions | No evidence deletion |
-| Platform administrator | Operational scope | Role assignments/audit events | Role assignments/configuration | Controlled break-glass only |
-| Ingestion worker | Required source/instrument lookups | Ingestion runs and validated observations | Run status only | None |
+## Verification completed
 
-These are intended capabilities, not grants or deployed role policies. The
-browser roles remain fully blocked until an authenticated identity contract,
-trusted role mapping, scoped grants and RLS policies are implemented and
-tested. Do not use user-editable Auth metadata for authorisation. Never place a
-service-role/secret key in browser code or a `NEXT_PUBLIC_*` variable.
+- Supabase migration history: migrations 001–006 applied.
+- Catalog: 16/16 application tables have RLS enabled.
+- Catalog: 16 policies exist across the application tables.
+- Privileges: `anon` cannot SELECT datasets.
+- Privileges: `authenticated` has SELECT but no INSERT on role assignments.
+- Runtime SQL as `anon`: direct dataset SELECT denied with permission error.
+- Runtime SQL as `authenticated` without an identity claim: dataset SELECT returned zero rows.
+- Runtime SQL as `authenticated`: attempt to INSERT a platform-admin role was denied.
+- Supabase security advisor after moving helpers to the private schema: no findings.
+- The project currently has zero Auth users. Therefore positive/negative tests with real authenticated identities and assigned scopes have not yet been run.
+- Earlier publication-gate positive/negative tests used synthetic fixtures inside a rolled-back transaction.
 
-## Verification performed
+## Explicit remaining launch gates
 
-- Catalog verification: all 13 application tables have RLS enabled.
-- Privilege verification: anonymous and authenticated roles cannot SELECT raw
-  tables or publication views.
-- Publication-gate negative test: a dataset with an unapproved source could not
-  be published.
-- Publication-gate positive test: a passed synthetic-demo dataset with an
-  approved source could be published.
-- Both publication tests used a transaction that was rolled back.
-- Supabase security advisor reports 13 `rls_enabled_no_policy` informational
-  findings. This is expected in this locked state; it is not a request to add
-  permissive policies.
-- Performance advisor currently reports unindexed foreign keys and unused
-  indexes. These should be reviewed after workload and query patterns exist.
+1. Configure Supabase Auth sign-up/invitation and password-reset policy.
+2. Add the Supabase project URL and publishable key to Vercel as environment variables. The Vercel project currently has no environment variables configured.
+3. Implement Next.js server/client Supabase clients and server-side session handling.
+4. Build trusted admin workflows to assign roles and dataset access; no browser endpoint may accept self-assigned roles.
+5. Implement audited server-side ingestion, validation and publication operations.
+6. Add disposable Auth test users for each role and verify allowed and denied operations through the Supabase Data API.
+7. Review Storage buckets, API routes, server actions, Edge Functions and service credentials before exposing upload or write workflows.
+8. Grant public SELECT only to approved publication views after source rights and the public-data release decision are recorded.
+9. Obtain written permission before importing or displaying actual Malawi Stock Exchange data.
 
-## Remaining release gates
-
-1. Choose and implement the app identity contract using Supabase Auth.
-2. Add trusted role assignments and scoped data access; do not infer roles from
-   user-editable metadata.
-3. Create explicit CRUD grants and RLS policies per principal and row scope.
-4. Add actual API/view access only after tests prove approved rows are visible
-   and pending/restricted rows remain invisible.
-5. Review functions/RPCs, Storage buckets, Next.js route handlers, server
-   actions and ingestion workers for alternate access paths.
-6. Run positive and negative tests using real test identities through both SQL
-   and the Data API; record results before enabling any public endpoint.
-7. Obtain written permission before importing or publicly displaying actual MSE
-   data. Synthetic fixtures must remain clearly labelled.
-
-This baseline is not a completed production authorisation system. It is a
-secure, intentionally inaccessible starting point.
+This is a secure database access baseline, not a finished production login/application integration.
+Do not remove the launch gates or call the system production-authenticated until they pass.
