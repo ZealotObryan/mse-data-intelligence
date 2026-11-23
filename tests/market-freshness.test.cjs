@@ -1,0 +1,10 @@
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const { assessDataFreshness } = require("../src/lib/market/data-freshness.cjs");
+const now = Date.parse("2026-11-23T08:00:00Z");
+const policy = { mode: "source", observedAt: "2026-11-23T07:55:00Z", ingestedAt: "2026-11-23T07:56:00Z", delayedAfterMs: 10 * 60_000, maxAgeMs: 60 * 60_000 };
+test("synthetic fixtures are demo with no invented freshness timestamp", () => { const r = assessDataFreshness({ mode: "demo" }, now); assert.equal(r.status, "demo"); assert.equal(r.observedAt, null); assert.equal(r.ageMs, null); });
+test("classifies current, delayed and stale source observations", () => { assert.equal(assessDataFreshness(policy, now).status, "current"); assert.equal(assessDataFreshness({ ...policy, observedAt: "2026-11-23T07:40:00Z" }, now).status, "delayed"); assert.equal(assessDataFreshness({ ...policy, observedAt: "2026-11-23T06:00:00Z" }, now).status, "stale"); });
+test("uses source observation time, not later ingestion time", () => { const r = assessDataFreshness({ ...policy, observedAt: "2026-11-23T06:00:00Z", ingestedAt: "2026-11-23T07:59:00Z" }, now); assert.equal(r.status, "stale"); assert.equal(r.ingestedAt, "2026-11-23T07:59:00Z"); });
+test("reports unavailable sources distinctly", () => { assert.equal(assessDataFreshness({ ...policy, availability: "unavailable" }, now).status, "unavailable"); });
+test("returns unknown for missing or invalid timing and policy", () => { assert.equal(assessDataFreshness({ mode: "source" }, now).status, "unknown"); assert.equal(assessDataFreshness({ ...policy, observedAt: "bad" }, now).status, "unknown"); assert.equal(assessDataFreshness({ ...policy, observedAt: "2026-11-23T09:00:00Z" }, now).status, "unknown"); assert.equal(assessDataFreshness({ ...policy, delayedAfterMs: 90 * 60_000 }, now).status, "unknown"); });
