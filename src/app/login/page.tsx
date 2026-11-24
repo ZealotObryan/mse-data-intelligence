@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { signInAction } from "@/app/auth/actions";
 import { hasSupabaseAuthConfig } from "@/lib/supabase/server";
+import { safeReturnPath } from "@/lib/auth/safe-return-path.cjs";
 import styles from "./page.module.css";
 
 type Props = {
@@ -14,11 +15,6 @@ const errorMessages: Record<string, string> = {
   "callback-failed": "The sign-in link could not be completed. Please try again.",
   "not-configured": "Authentication is not connected yet. The public demonstration remains available.",
 };
-
-function safeReturnPath(value?: string): string {
-  if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\")) return "/";
-  return value;
-}
 
 async function LoginContent({ searchParams }: Props) {
   const params = await searchParams;
