@@ -38,11 +38,18 @@ Before any future write endpoint is introduced, review the endpoint, its caller-
 
 ## Deployment prerequisites
 
-Configure the following Vercel project environment variables before testing live sign-in:
+The following variables are configured only for the `feat/supabase-auth-foundation` Vercel Preview branch. They are not configured for Production:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 
-Then configure the Supabase Auth site URL and redirect allow-list for the production and preview origins. Create test-only identities through the project owner/admin workflow; do not use a personal or production identity as a test account.
+Before testing sign-in, configure Supabase Dashboard → Authentication → URL Configuration:
 
-Until those steps are complete, the login page explicitly reports that authentication setup is pending and the public dashboard remains available.
+- Site URL: `https://mse-data-intelligence.vercel.app`
+- Local callback: `http://localhost:3000/auth/callback`
+- Stable Vercel branch callback: `https://mse-data-intelligence-git-feat-supaba-0d1b14-obriensibande-7013.vercel.app/auth/callback`
+- If testing unique Vercel preview deployment URLs, add a narrowly scoped Vercel preview wildcard supported by Supabase (for example, `https://*-obriensibande-7013.vercel.app/**`) and remove it when no longer needed.
+
+Create test-only identities through the project owner/admin workflow; do not use a personal or production identity as a test account. Test successful sign-in, invalid credentials, callback exchange, session refresh, sign-out, and denied database access using synthetic test identities.
+
+The login page shows an explicit setup-pending notice when its required environment variables are absent. With the branch-scoped preview variables present, it displays the email/password sign-in form. The public dashboard remains available in either state.
