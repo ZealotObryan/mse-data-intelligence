@@ -2,12 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-
-function safeReturnPath(value: FormDataEntryValue | string | null): string {
-  if (typeof value !== "string") return "/";
-  if (!value.startsWith("/") || value.startsWith("//") || value.includes("\\")) return "/";
-  return value;
-}
+import { safeReturnPath } from "@/lib/auth/safe-return-path.cjs";
 
 export async function signInAction(formData: FormData) {
   const email = String(formData.get("email") ?? "").trim();
