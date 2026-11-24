@@ -48,7 +48,7 @@ Before testing sign-in, configure Supabase Dashboard → Authentication → URL 
 - Site URL: `https://mse-data-intelligence.vercel.app`
 - Local callback: `http://localhost:3000/auth/callback`
 - Stable Vercel branch callback: `https://mse-data-intelligence-git-feat-supaba-0d1b14-obriensibande-7013.vercel.app/auth/callback`
-- If testing unique Vercel preview deployment URLs, add a narrowly scoped Vercel preview wildcard supported by Supabase (for example, `https://*-obriensibande-7013.vercel.app/**`) and remove it when no longer needed.
+- For unique Vercel preview deployment URLs, use a project-scoped wildcard such as `https://mse-data-intelligence-*-obriensibande-7013.vercel.app/auth/callback`; remove it when preview testing is complete. The exact stable branch alias above is preferable when possible.
 
 Create test-only identities through the project owner/admin workflow; do not use a personal or production identity as a test account. Test successful sign-in, invalid credentials, callback exchange, session refresh, sign-out, and denied database access using synthetic test identities.
 
