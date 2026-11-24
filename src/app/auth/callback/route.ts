@@ -1,12 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient, hasSupabaseAuthConfig } from "@/lib/supabase/server";
-
-function safeReturnPath(value: string | null): string {
-  if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\")) {
-    return "/";
-  }
-  return value;
-}
+import { safeReturnPath } from "@/lib/auth/safe-return-path.cjs";
 
 export async function GET(request: NextRequest) {
   const url = request.nextUrl.clone();
