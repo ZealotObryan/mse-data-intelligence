@@ -106,3 +106,47 @@ def test_report_does_not_include_market_rows(tmp_path):
     output = (tmp_path / "validation-report.json").read_text(encoding="utf-8")
     assert "123.45" not in output
     assert report["validation"]["rows_received"] == 2
+
+from mse_analytics.mse_ingestion_workflow import main
+
+
+def test_cli_returns_zero_for_valid_staging_even_when_permission_is_blocked(tmp_path, capsys):
+    source, metadata_path = setup_files(tmp_path, provenance())
+    exit_code = main([
+        "--source", str(source),
+        "--provenance", str(metadata_path),
+        "--archive", str(tmp_path / "archive"),
+        "--manifest", str(tmp_path / "manifest.jsonl"),
+        "--report", str(tmp_path / "report.json"),
+    ])
+    assert exit_code == 0
+    summary = json.loads(capsys.readouterr().out)
+    assert summary["publication_status"] == "blocked"
+    assert summary["validation_status"] == "passed"
+
+
+def test_cli_returns_validation_error_code_for_invalid_dataset(tmp_path, capsys):
+    source, metadata_path = setup_files(tmp_path, provenance())
+    write_csv(source, [["MSE-TEST", "not-a-date", "0", "MWK"]])
+    exit_code = main([
+        "--source", str(source),
+        "--provenance", str(metadata_path),
+        "--archive", str(tmp_path / "archive"),
+        "--manifest", str(tmp_path / "manifest.jsonl"),
+        "--report", str(tmp_path / "report.json"),
+    ])
+    assert exit_code == 3
+    summary = json.loads(capsys.readouterr().out)
+    assert summary["validation_status"] == "rejected"
+
+
+def test_cli_handles_missing_files_without_traceback(tmp_path, capsys):
+    exit_code = main([
+        "--source", str(tmp_path / "absent.csv"),
+        "--provenance", str(tmp_path / "absent.json"),
+        "--archive", str(tmp_path / "archive"),
+        "--manifest", str(tmp_path / "manifest.jsonl"),
+        "--report", str(tmp_path / "report.json"),
+    ])
+    assert exit_code == 2
+    assert "Ingestion failed:" in capsys.readouterr().out
