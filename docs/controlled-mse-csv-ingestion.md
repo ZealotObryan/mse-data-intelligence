@@ -8,6 +8,8 @@ MSE permission for automated acquisition and public display remains unconfirmed.
 
 ## Input CSV contract
 
+The staging validator now requires currency values to be exactly three uppercase alphabetic characters (no surrounding whitespace). This is a format check, not a complete ISO 4217 membership check. Invalid values are rejected, not silently normalized.
+
 The current staging adapter expects these columns:
 
 ```csv
@@ -15,7 +17,7 @@ instrument_id,observation_date,price,currency
 MSE-TEST,2026-11-24,123.45,MWK
 ```
 
-This is an illustrative test fixture, **not real MSE data**. Before using an official report, verify its column definitions and map the file into the staging contract without guessing. Preserve the untouched original artifact.
+This is an illustrative test fixture, **not real MSE data**. Before using an official report, verify its column definitions and map the file into the staging contract without guessing. Preserve the untouched original artifact. The current contract does not yet encode quote type (e.g., closing, last-traded, bid/ask), adjustment status, or source-specific units; those must be established from the source specification before mapping or analysis.
 
 ## Provenance metadata example
 
