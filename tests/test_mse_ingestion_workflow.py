@@ -150,3 +150,12 @@ def test_cli_handles_missing_files_without_traceback(tmp_path, capsys):
     ])
     assert exit_code == 2
     assert "Ingestion failed:" in capsys.readouterr().out
+
+
+
+def test_validation_report_ends_with_real_newline_not_escaped_text(tmp_path):
+    source, metadata_path = setup_files(tmp_path, provenance())
+    run(tmp_path, source, metadata_path)
+    report_bytes = (tmp_path / "validation-report.json").read_bytes()
+    assert report_bytes.endswith(bytes([10]))
+    assert not report_bytes.endswith(b"\\n")
