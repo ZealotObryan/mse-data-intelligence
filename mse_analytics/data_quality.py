@@ -80,18 +80,18 @@ def validate_price_observations(
         lambda value: isinstance(value, str) and bool(value.strip())
     )
     currency_ok = checked["currency"].map(
-        lambda value: isinstance(value, str) and len(value.strip()) == 3
+        lambda value: isinstance(value, str) and value == value.strip() and len(value) == 3 and value.isalpha() and value.isupper()
     )
     invalid_metadata = ~(instrument_ok & currency_ok)
     if invalid_metadata.any():
         issues.append(QualityIssue(
             code="invalid_instrument_or_currency",
             severity="error",
-            message="instrument_id must be non-empty and currency must be a three-letter code",
+            message="instrument_id must be non-empty and currency must be a three-letter uppercase code",
             row_indices=tuple(checked.index[invalid_metadata].tolist()),
         ))
 
-    dates = pd.to_datetime(checked["observation_date"], errors="coerce", utc=True)
+    dates = pd.to_datetime(checked["observation_date"], format="%Y-%m-%d", errors="coerce")
     invalid_dates = dates.isna()
     if invalid_dates.any():
         issues.append(QualityIssue(

@@ -74,3 +74,22 @@ def test_unparseable_date_is_rejected():
     frame.loc[0, "observation_date"] = "not-a-date"
     report = validate_price_observations(frame)
     assert any(item.code == "invalid_observation_date" for item in report.issues)
+
+
+
+def test_currency_must_be_three_uppercase_letters_without_whitespace():
+    frame = valid_prices()
+    frame.loc[0, "currency"] = "mwk"
+    frame.loc[1, "currency"] = " MWK"
+    report = validate_price_observations(frame)
+    issue = next(item for item in report.issues if item.code == "invalid_instrument_or_currency")
+    assert issue.row_indices == (0, 1)
+
+
+
+def test_observation_date_requires_exchange_local_iso_date_only():
+    frame = valid_prices()
+    frame.loc[0, "observation_date"] = "2026-01-02T00:00:00+02:00"
+    report = validate_price_observations(frame)
+    issue = next(item for item in report.issues if item.code == "invalid_observation_date")
+    assert issue.row_indices == (0,)
