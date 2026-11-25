@@ -11,8 +11,9 @@ import argparse
 from dataclasses import asdict
 import json
 from pathlib import Path
-import tempfile
-from typing import Any, Mapping
+from typing import Any
+
+import pandas as pd
 
 from mse_analytics.staging import stage_price_csv
 
