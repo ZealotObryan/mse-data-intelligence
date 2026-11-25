@@ -97,7 +97,7 @@ def main(argv: list[str] | None = None) -> int:
             provenance_path=args.provenance,
             report_path=args.report,
         )
-    except (OSError, ValueError, json.JSONDecodeError) as exc:
+    except (OSError, ValueError, json.JSONDecodeError, pd.errors.EmptyDataError) as exc:
         print(f"Ingestion failed: {exc}")
         return 2
 
