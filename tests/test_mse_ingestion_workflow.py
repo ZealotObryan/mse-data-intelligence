@@ -79,7 +79,7 @@ def test_explicit_permission_and_valid_rows_only_mark_eligible_for_review(tmp_pa
     assert report["validation"]["status"] == "passed"
     assert report["permission"]["publication_allowed"] is True
     assert report["publication_status"] == "eligible_for_review"
-    assert "never publishes" in report["note"] or "never publishes" not in report["note"]
+    assert "never publishes or writes to a database" in report["note"]
 
 
 def test_quality_failure_stays_blocked(tmp_path):
