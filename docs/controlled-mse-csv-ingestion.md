@@ -8,7 +8,7 @@ MSE permission for automated acquisition and public display remains unconfirmed.
 
 ## Input CSV contract
 
-The staging validator now requires currency values to be exactly three uppercase alphabetic characters (no surrounding whitespace). This is a format check, not a complete ISO 4217 membership check. Invalid values are rejected, not silently normalized.
+The staging validator requires `observation_date` in date-only `YYYY-MM-DD` format (exchange-local date; no timestamp conversion), and currency values to be exactly three uppercase alphabetic characters (no surrounding whitespace). Currency validation is a format check, not a complete ISO 4217 membership check. Invalid values are rejected, not silently normalized.
 
 The current staging adapter expects these columns:
 
