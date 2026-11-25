@@ -91,7 +91,7 @@ def validate_price_observations(
             row_indices=tuple(checked.index[invalid_metadata].tolist()),
         ))
 
-    dates = pd.to_datetime(checked["observation_date"], errors="coerce", utc=True)
+    dates = pd.to_datetime(checked["observation_date"], format="%Y-%m-%d", errors="coerce")
     invalid_dates = dates.isna()
     if invalid_dates.any():
         issues.append(QualityIssue(
